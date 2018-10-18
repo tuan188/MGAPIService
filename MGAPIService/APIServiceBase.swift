@@ -3,24 +3,24 @@ import Alamofire
 import RxSwift
 import RxAlamofire
 
-func == <K, V>(left: [K:V], right: [K:V]) -> Bool {
+public func == <K, V>(left: [K:V], right: [K:V]) -> Bool {
     return NSDictionary(dictionary: left).isEqual(to: right)
 }
 
-typealias JSONDictionary = [String: Any]
+public typealias JSONDictionary = [String: Any]
 
-class APIBase {
+open class APIBase {
    
     var manager: Alamofire.SessionManager
     
-    init() {
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30
         configuration.timeoutIntervalForResource = 30
         manager = Alamofire.SessionManager(configuration: configuration)
     }
     
-    func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
+    public func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
         return request(input)
             .map { json -> T in
                 if let t = T(JSON: json) {
@@ -30,7 +30,7 @@ class APIBase {
             }
     }
     
-    func request(_ input: APIInputBase) -> Observable<JSONDictionary> {
+    public func request(_ input: APIInputBase) -> Observable<JSONDictionary> {
         let user = input.user
         let password = input.password
         let urlRequest = preprocess(input)
@@ -118,11 +118,11 @@ class APIBase {
             : urlRequest
     }
     
-    func preprocess(_ input: APIInputBase) -> Observable<APIInputBase> {
+    public func preprocess(_ input: APIInputBase) -> Observable<APIInputBase> {
         return Observable.just(input)
     }
     
-    func process(_ response: (HTTPURLResponse, Data)) throws -> JSONDictionary {
+    public func process(_ response: (HTTPURLResponse, Data)) throws -> JSONDictionary {
         let (response, data) = response
         let json: JSONDictionary? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? JSONDictionary
         let error: Error
@@ -143,11 +143,11 @@ class APIBase {
         throw error
     }
     
-    func handleRequestError(_ error: Error, input: APIInputBase) throws -> Observable<JSONDictionary> {
+    public func handleRequestError(_ error: Error, input: APIInputBase) throws -> Observable<JSONDictionary> {
         throw error
     }
     
-    func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONDictionary?) -> Error {
+    public func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONDictionary?) -> Error {
         return APIUnknownError(statusCode: response.statusCode)
     }
 

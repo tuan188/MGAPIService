@@ -1,14 +1,14 @@
-enum CacheManagerError: Error {
+public enum CacheManagerError: Error {
     case invalidFileName(urlString: String)
     case invalidFileData
 }
 
-class CacheManager {
-    static var sharedInstance = CacheManager()
+open class CacheManager {
+    public static var sharedInstance = CacheManager()
     
-    let fileExtension = "cache"
+    public let fileExtension = "cache"
     
-    func fileURL(fileName: String) -> URL? {
+    public func fileURL(fileName: String) -> URL? {
         return try? FileManager.default
             .url(for: .cachesDirectory,
                  in: .userDomainMask,
@@ -18,13 +18,13 @@ class CacheManager {
             .appendingPathExtension(fileExtension)
     }
     
-    func encodedFileName(urlString: String) -> String? {
+    public func encodedFileName(urlString: String) -> String? {
         return urlString
             .toBase64()
             .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
     
-    func read(urlString: String) throws -> JSONDictionary {
+    public func read(urlString: String) throws -> JSONDictionary {
         if let fileName = self.encodedFileName(urlString: urlString),
             let url = self.fileURL(fileName: fileName) {
             if let data = try? Data(contentsOf: url),
@@ -38,7 +38,7 @@ class CacheManager {
         }
     }
     
-    func write(urlString: String, data: JSONDictionary) throws {
+    public func write(urlString: String, data: JSONDictionary) throws {
         guard let fileName = self.encodedFileName(urlString: urlString),
             let fileURL = self.fileURL(fileName: fileName) else {
                 throw CacheManagerError.invalidFileName(urlString: urlString)
@@ -47,7 +47,7 @@ class CacheManager {
         try data.write(to: fileURL, options: .atomic)
     }
     
-    func clear() {
+    public func clear() {
         let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
         guard let folderPath = paths.first else { return }
         let fileManager = FileManager.default

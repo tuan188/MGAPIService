@@ -1,24 +1,24 @@
 import Alamofire
 
-class APIInputBase {
-    var headers: [String: String] = [:]
-    let urlString: String
-    let requestType: HTTPMethod
-    let encoding: ParameterEncoding
-    let parameters: [String: Any]?
-    let requireAccessToken: Bool
-    var accessToken: String?
-    var useCache: Bool = false {
+open class APIInputBase {
+    public var headers: [String: String] = [:]
+    public let urlString: String
+    public let requestType: HTTPMethod
+    public let encoding: ParameterEncoding
+    public let parameters: [String: Any]?
+    public let requireAccessToken: Bool
+    public var accessToken: String?
+    public var useCache: Bool = false {
         didSet {
             if requestType == .get || self is APIUploadInputBase {
                 fatalError()
             }
         }
     }
-    var user: String?
-    var password: String?
+    public var user: String?
+    public var password: String?
     
-    init(urlString: String,
+    public init(urlString: String,
          parameters: [String: Any]?,
          requestType: HTTPMethod,
          requireAccessToken: Bool) {
@@ -32,7 +32,7 @@ class APIInputBase {
 
 
 extension APIInputBase: CustomStringConvertible {
-    var urlEncodingString: String {
+    public var urlEncodingString: String {
         guard
             let url = URL(string: urlString),
             var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
@@ -47,7 +47,7 @@ extension APIInputBase: CustomStringConvertible {
         return urlComponents.url?.absoluteString ?? urlString
     }
     
-    var description: String {
+    public var description: String {
         if requestType == .get {
             return [
                 "🌎 \(requestType.rawValue) \(urlEncodingString)"
@@ -60,17 +60,17 @@ extension APIInputBase: CustomStringConvertible {
     }
 }
 
-struct APIUploadData {
+public struct APIUploadData {
     let data: Data
     let name: String
     let fileName: String
     let mimeType: String
 }
 
-class APIUploadInputBase: APIInputBase {
-    let data: [APIUploadData]
+open class APIUploadInputBase: APIInputBase {
+    public let data: [APIUploadData]
     
-    init(data: [APIUploadData],
+    public init(data: [APIUploadData],
          urlString: String,
          parameters: [String: Any]?,
          requestType: HTTPMethod,

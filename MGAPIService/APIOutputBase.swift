@@ -1,12 +1,12 @@
 import ObjectMapper
 
-class APIOutputBase: Mappable {
+open class APIOutputBase: Mappable {
     
-    required init?(map: Map) {
+    public required init?(map: Map) {
 
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         
     }
 }
