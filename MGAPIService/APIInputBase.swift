@@ -32,7 +32,7 @@ open class APIInputBase {
 
 
 extension APIInputBase: CustomStringConvertible {
-    public var urlEncodingString: String {
+    open var urlEncodingString: String {
         guard
             let url = URL(string: urlString),
             var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
@@ -47,7 +47,7 @@ extension APIInputBase: CustomStringConvertible {
         return urlComponents.url?.absoluteString ?? urlString
     }
     
-    public var description: String {
+    open var description: String {
         if requestType == .get {
             return [
                 "🌎 \(requestType.rawValue) \(urlEncodingString)"

@@ -6,7 +6,7 @@ open class APIOutputBase: Mappable {
 
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         
     }
 }

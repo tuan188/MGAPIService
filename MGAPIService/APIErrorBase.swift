@@ -9,6 +9,11 @@ public extension APIError {
 }
 
 public struct APIInvalidResponseError: APIError {
+    
+    public init() {
+        
+    }
+    
     public var errorDescription: String? {
         return NSLocalizedString("api.invalidResponseError", comment: "")
     }
@@ -17,6 +22,10 @@ public struct APIInvalidResponseError: APIError {
 public struct APIUnknownError: APIError {
     
     public let statusCode: Int?
+    
+    public init(statusCode: Int?) {
+        self.statusCode = statusCode
+    }
     
     public var errorDescription: String? {
         return NSLocalizedString("api.unknownError", comment: "")

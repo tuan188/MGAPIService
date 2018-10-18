@@ -20,7 +20,7 @@ open class APIBase {
         manager = Alamofire.SessionManager(configuration: configuration)
     }
     
-    public func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
+    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
         return request(input)
             .map { json -> T in
                 if let t = T(JSON: json) {
@@ -30,7 +30,7 @@ open class APIBase {
             }
     }
     
-    public func request(_ input: APIInputBase) -> Observable<JSONDictionary> {
+    open func request(_ input: APIInputBase) -> Observable<JSONDictionary> {
         let user = input.user
         let password = input.password
         let urlRequest = preprocess(input)
@@ -118,11 +118,11 @@ open class APIBase {
             : urlRequest
     }
     
-    public func preprocess(_ input: APIInputBase) -> Observable<APIInputBase> {
+    open func preprocess(_ input: APIInputBase) -> Observable<APIInputBase> {
         return Observable.just(input)
     }
     
-    public func process(_ response: (HTTPURLResponse, Data)) throws -> JSONDictionary {
+    open func process(_ response: (HTTPURLResponse, Data)) throws -> JSONDictionary {
         let (response, data) = response
         let json: JSONDictionary? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? JSONDictionary
         let error: Error
@@ -143,11 +143,11 @@ open class APIBase {
         throw error
     }
     
-    public func handleRequestError(_ error: Error, input: APIInputBase) throws -> Observable<JSONDictionary> {
+    open func handleRequestError(_ error: Error, input: APIInputBase) throws -> Observable<JSONDictionary> {
         throw error
     }
     
-    public func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONDictionary?) -> Error {
+    open func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONDictionary?) -> Error {
         return APIUnknownError(statusCode: response.statusCode)
     }
 
