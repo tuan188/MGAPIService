@@ -9,7 +9,7 @@ PODS:
   - RxSwift (4.1.0)
 
 DEPENDENCIES:
-  - ObjectMapper (~> 3.3)
+  - ObjectMapper (= 3.3)
   - RxAlamofire (= 4.2)
   - RxSwift (= 4.1)
 
@@ -26,6 +26,6 @@ SPEC CHECKSUMS:
   RxAlamofire: 87a9c588541210cc3e4a1f843ccc3ecf3eb98b31
   RxSwift: 4219941c1244c88002901bd87a69d3aea9ae71f0
 
-PODFILE CHECKSUM: 1bf0b63210851afe8605bd2936a60b3a2605b0df
+PODFILE CHECKSUM: b923a577768a7a7ecf5445664a0e1ff09c5f960d
 
 COCOAPODS: 1.5.3

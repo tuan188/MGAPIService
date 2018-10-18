@@ -8,7 +8,7 @@ s.summary = "Network layer, built on top of RxAlamofire"
 s.requires_arc = true
 
 # 2
-s.version = "0.1.1"
+s.version = "0.1.3"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
@@ -21,13 +21,12 @@ s.homepage = "https://github.com/tuan188/MGAPIService"
 
 # 6 - Replace this URL with your own Git URL from "Quick Setup"
 s.source = { :git => "https://github.com/tuan188/MGAPIService.git",
-:tag => "#{s.version}" }
+             :tag => "#{s.version}" }
 
 # 7
-s.dependency 'RxSwift', '4.1'
-s.dependency 'RxAlamofire', '4.2'
-s.dependency 'Alamofire', '4.7'
-s.dependency 'ObjectMapper', '3.3'
+s.dependency 'RxSwift', '~> 4.1'
+s.dependency 'RxAlamofire', '~> 4.2'
+s.dependency 'ObjectMapper', '~> 3.3'
 
 # 8
 s.source_files = "MGAPIService/**/*.{swift}"
