@@ -8,7 +8,7 @@ s.summary = "Network layer, built on top of RxAlamofire"
 s.requires_arc = true
 
 # 2
-s.version = "0.1.5"
+s.version = "0.1.6"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
@@ -24,6 +24,7 @@ s.source = { :git => "https://github.com/tuan188/MGAPIService.git",
              :tag => "#{s.version}" }
 
 # 7
+s.framework = "UIKit"
 s.dependency 'RxSwift', '~> 4.1'
 s.dependency 'RxAlamofire', '~> 4.2'
 s.dependency 'ObjectMapper', '~> 3.3'
