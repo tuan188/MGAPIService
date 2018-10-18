@@ -11,7 +11,7 @@ public typealias JSONDictionary = [String: Any]
 
 open class APIBase {
    
-    var manager: Alamofire.SessionManager
+    public var manager: Alamofire.SessionManager
     
     public init() {
         let configuration = URLSessionConfiguration.default
