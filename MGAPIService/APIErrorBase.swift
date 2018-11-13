@@ -15,7 +15,9 @@ public struct APIInvalidResponseError: APIError {
     }
     
     public var errorDescription: String? {
-        return NSLocalizedString("api.invalidResponseError", comment: "")
+        return NSLocalizedString("api.invalidResponseError",
+                                 value: "Invalid server response",
+                                 comment: "")
     }
 }
 
@@ -28,7 +30,9 @@ public struct APIUnknownError: APIError {
     }
     
     public var errorDescription: String? {
-        return NSLocalizedString("api.unknownError", comment: "")
+        return NSLocalizedString("api.unknownError",
+                                 value: "Unknown API error",
+                                 comment: "")
     }
 }
 

@@ -10,7 +10,7 @@ open class APIInputBase {
     public var accessToken: String?
     public var useCache: Bool = false {
         didSet {
-            if requestType == .get || self is APIUploadInputBase {
+            if requestType != .get || self is APIUploadInputBase {
                 fatalError()
             }
         }
