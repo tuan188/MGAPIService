@@ -24,11 +24,11 @@ open class CacheManager {
             .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
     
-    public func read(urlString: String) throws -> JSONDictionary {
+    public func read(urlString: String) throws -> Any {
         if let fileName = self.encodedFileName(urlString: urlString),
             let url = self.fileURL(fileName: fileName) {
             if let data = try? Data(contentsOf: url),
-                let dictionary = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: Any] {
+                let dictionary = NSKeyedUnarchiver.unarchiveObject(with: data) {
                 return dictionary
             } else {
                 throw CacheManagerError.invalidFileData
@@ -38,7 +38,7 @@ open class CacheManager {
         }
     }
     
-    public func write(urlString: String, data: JSONDictionary) throws {
+    public func write(urlString: String, data: Any) throws {
         guard let fileName = self.encodedFileName(urlString: urlString),
             let fileURL = self.fileURL(fileName: fileName) else {
                 throw CacheManagerError.invalidFileName(urlString: urlString)

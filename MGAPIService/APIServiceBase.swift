@@ -3,11 +3,33 @@ import Alamofire
 import RxSwift
 import RxAlamofire
 
-public func == <K, V>(left: [K:V], right: [K:V]) -> Bool {
-    return NSDictionary(dictionary: left).isEqual(to: right)
+public typealias JSONDictionary = [String: Any]
+public typealias JSONArray = [JSONDictionary]
+
+public protocol JSONData {
+    init()
+    static func equal(left: JSONData, right: JSONData) -> Bool
 }
 
-public typealias JSONDictionary = [String: Any]
+extension Dictionary: JSONData where Dictionary == JSONDictionary {
+    static public func equal(left: JSONData, right: JSONData) -> Bool {
+        return NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
+    }
+}
+
+extension Array: JSONData where Array == JSONArray {
+    static public func equal(left: JSONData, right: JSONData) -> Bool {
+        let leftArray = left as! JSONArray
+        let rightArray = right as! JSONArray
+        guard leftArray.count == rightArray.count else { return false }
+        for i in 0..<leftArray.count {
+            if !JSONDictionary.equal(left: leftArray[i], right: rightArray[i]) {
+                return false
+            }
+        }
+        return true
+    }
+}
 
 open class APIBase {
    
@@ -21,7 +43,8 @@ open class APIBase {
     }
     
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
-        return request(input)
+        let response: Observable<JSONDictionary> = request(input)
+        return response
             .map { json -> T in
                 if let t = T(JSON: json) {
                     return t
@@ -30,7 +53,15 @@ open class APIBase {
             }
     }
     
-    open func request(_ input: APIInputBase) -> Observable<JSONDictionary> {
+    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
+        let response: Observable<JSONArray> = request(input)
+        return response
+            .map { json -> [T] in
+                return Mapper<T>().mapArray(JSONArray: json)
+            }
+    }
+    
+    open func request<U: JSONData>(_ input: APIInputBase) -> Observable<U> {
         let user = input.user
         let password = input.password
         let urlRequest = preprocess(input)
@@ -88,10 +119,10 @@ open class APIBase {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })
-            .map { (dataResponse) -> JSONDictionary in
+            .map { (dataResponse) -> U in
                 return try self.process(dataResponse)
             }
-            .catchError { [unowned self] error -> Observable<JSONDictionary> in
+            .catchError { [unowned self] error -> Observable<U> in
                 return try self.handleRequestError(error, input: input)
             }
             .do(onNext: { (json) in
@@ -108,13 +139,13 @@ open class APIBase {
             .map {
                 try CacheManager.sharedInstance.read(urlString: $0.urlEncodingString)
             }
-            .catchError({ (error) -> Observable<JSONDictionary> in
+            .catchError { error in
                 print(error)
                 return Observable.empty()
-            })
-        
+            }
+            .map { $0 as! U }
         return input.useCache
-            ? Observable.concat(cacheRequest, urlRequest).distinctUntilChanged (==)
+            ? Observable.concat(cacheRequest, urlRequest).distinctUntilChanged(U.equal)
             : urlRequest
     }
     
@@ -122,15 +153,15 @@ open class APIBase {
         return Observable.just(input)
     }
     
-    open func process(_ response: (HTTPURLResponse, Data)) throws -> JSONDictionary {
+    open func process<U: JSONData>(_ response: (HTTPURLResponse, Data)) throws -> U {
         let (response, data) = response
-        let json: JSONDictionary? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? JSONDictionary
+        let json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
         let error: Error
         let statusCode = response.statusCode
         switch statusCode {
         case 200..<300:
             print("👍 [\(statusCode)] " + (response.url?.absoluteString ?? ""))
-            return json ?? JSONDictionary()
+            return json ?? U.init()
         default:
             error = handleResponseError(response: response, data: data, json: json)
             print("❌ [\(statusCode)] " + (response.url?.absoluteString ?? ""))
@@ -143,12 +174,11 @@ open class APIBase {
         throw error
     }
     
-    open func handleRequestError(_ error: Error, input: APIInputBase) throws -> Observable<JSONDictionary> {
+    open func handleRequestError<U: JSONData>(_ error: Error, input: APIInputBase) throws -> Observable<U> {
         throw error
     }
     
-    open func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONDictionary?) -> Error {
+    open func handleResponseError<U: JSONData>(response: HTTPURLResponse, data: Data, json: U?) -> Error {
         return APIUnknownError(statusCode: response.statusCode)
     }
-
 }
