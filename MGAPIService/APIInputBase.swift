@@ -30,8 +30,7 @@ open class APIInputBase {
     }
 }
 
-
-extension APIInputBase: CustomStringConvertible {
+extension APIInputBase {
     open var urlEncodingString: String {
         guard
             let url = URL(string: urlString),
@@ -46,7 +45,9 @@ extension APIInputBase: CustomStringConvertible {
         }
         return urlComponents.url?.absoluteString ?? urlString
     }
-    
+}
+
+extension APIInputBase: CustomStringConvertible {
     open var description: String {
         if requestType == .get {
             return [
@@ -93,5 +94,3 @@ open class APIUploadInputBase: APIInputBase {
         )
     }
 }
-
-

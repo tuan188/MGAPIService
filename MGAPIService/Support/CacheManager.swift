@@ -59,4 +59,13 @@ open class CacheManager {
             }
         }
     }
+    
+    public func removeCache(for urlString: String) {
+        guard let fileName = self.encodedFileName(urlString: urlString),
+            let fileURL = self.fileURL(fileName: fileName) else {
+                return
+        }
+        let fileManager = FileManager.default
+        try? fileManager.removeItem(at: fileURL)
+    }
 }
