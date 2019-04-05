@@ -8,7 +8,7 @@ s.summary = "Network layer, built on top of RxAlamofire"
 s.requires_arc = true
 
 # 2
-s.version = "0.3.1"
+s.version = "0.3.2"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
@@ -30,7 +30,7 @@ s.dependency 'RxAlamofire', '~> 4.3'
 s.dependency 'ObjectMapper', '~> 3.3'
 
 # 8
-s.source_files = "MGAPIService/**/*.{swift}"
+s.source_files = "MGAPIService/Source/*.{swift}"
 
 # 9
 # s.resources = "MGAPIService/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"

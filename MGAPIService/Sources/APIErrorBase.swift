@@ -1,3 +1,11 @@
+//
+//  APIErrorBase.swift
+//  MGAPIService
+//
+//  Created by Tuan Truong on 4/5/19.
+//  Copyright © 2019 Sun Asterisk. All rights reserved.
+//
+
 import UIKit
 
 public protocol APIError: LocalizedError {
@@ -5,7 +13,7 @@ public protocol APIError: LocalizedError {
 }
 
 public extension APIError {
-    public var statusCode: Int? { return nil }
+    var statusCode: Int? { return nil }
 }
 
 public struct APIInvalidResponseError: APIError {

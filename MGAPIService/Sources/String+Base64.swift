@@ -1,3 +1,13 @@
+//
+//  String+Base64.swift
+//  MGAPIService
+//
+//  Created by Tuan Truong on 4/5/19.
+//  Copyright © 2019 Sun Asterisk. All rights reserved.
+//
+
+import Foundation
+
 extension String {
     /// Encode a String to Base64
     func toBase64() -> String {

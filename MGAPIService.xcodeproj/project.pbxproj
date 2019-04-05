@@ -7,22 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		179F9E6821783D5F0018A62B /* MGAPIService.h in Headers */ = {isa = PBXBuildFile; fileRef = 179F9E6621783D5F0018A62B /* MGAPIService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		179F9E76217859A10018A62B /* APIOutputBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E6E217859A10018A62B /* APIOutputBase.swift */; };
-		179F9E77217859A10018A62B /* APIErrorBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E6F217859A10018A62B /* APIErrorBase.swift */; };
-		179F9E78217859A10018A62B /* APIInputBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E70217859A10018A62B /* APIInputBase.swift */; };
-		179F9E79217859A10018A62B /* APIServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E71217859A10018A62B /* APIServiceBase.swift */; };
-		179F9E7A217859A10018A62B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E73217859A10018A62B /* CacheManager.swift */; };
-		179F9E7B217859A10018A62B /* RxAlamofire+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */; };
-		179F9E7C217859A10018A62B /* String+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E75217859A10018A62B /* String+Base64.swift */; };
-		AE1B16E29AA0B1C7E98C9675 /* libPods-MGAPIService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE741C1984DF2AE9CF6E6CD1 /* libPods-MGAPIService.a */; };
+		1740158B2257385C00838B91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1740158A2257385C00838B91 /* Assets.xcassets */; };
+		1740158E2257385C00838B91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1740158C2257385C00838B91 /* LaunchScreen.storyboard */; };
+		174015B0225738C800838B91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17401596225738C800838B91 /* AppDelegate.swift */; };
+		174015B1225738C800838B91 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740159B225738C800838B91 /* APIError.swift */; };
+		174015B2225738C800838B91 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740159C225738C800838B91 /* APIService.swift */; };
+		174015B3225738C800838B91 /* APIInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740159D225738C800838B91 /* APIInput.swift */; };
+		174015B4225738C800838B91 /* APIOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740159E225738C800838B91 /* APIOutput.swift */; };
+		174015B5225738C800838B91 /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740159F225738C800838B91 /* APIUrls.swift */; };
+		174015B6225738C800838B91 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015A2225738C800838B91 /* Storyboards.swift */; };
+		174015B7225738C800838B91 /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015A4225738C800838B91 /* AppAssembler.swift */; };
+		174015B8225738C800838B91 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015A5225738C800838B91 /* AppNavigator.swift */; };
+		174015B9225738C800838B91 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015A6225738C800838B91 /* AppViewModel.swift */; };
+		174015BA225738C800838B91 /* AppUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015A7225738C800838B91 /* AppUseCase.swift */; };
+		174015BB225738C800838B91 /* UnitTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015A8225738C800838B91 /* UnitTestViewController.swift */; };
+		174015BC225738C800838B91 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015AA225738C800838B91 /* Assembler.swift */; };
+		174015BD225738C800838B91 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015AC225738C800838B91 /* Utils.swift */; };
+		174015BF225738C800838B91 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015AF225738C800838B91 /* UIViewController+Rx.swift */; };
+		174015C0225738D300838B91 /* APIErrorBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E6F217859A10018A62B /* APIErrorBase.swift */; };
+		174015C1225738D300838B91 /* APIInputBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E70217859A10018A62B /* APIInputBase.swift */; };
+		174015C2225738D300838B91 /* APIOutputBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E6E217859A10018A62B /* APIOutputBase.swift */; };
+		174015C3225738D300838B91 /* APIServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E71217859A10018A62B /* APIServiceBase.swift */; };
+		174015C4225738D300838B91 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E73217859A10018A62B /* CacheManager.swift */; };
+		174015C5225738D300838B91 /* RxAlamofire+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */; };
+		174015C6225738D300838B91 /* String+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F9E75217859A10018A62B /* String+Base64.swift */; };
+		174015C82257592900838B91 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015C72257592900838B91 /* Repo.swift */; };
+		174015D02257598F00838B91 /* RepoListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015CA2257598F00838B91 /* RepoListUseCase.swift */; };
+		174015D12257598F00838B91 /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015CB2257598F00838B91 /* RepoListViewController.swift */; };
+		174015D22257598F00838B91 /* RepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015CC2257598F00838B91 /* RepoViewModel.swift */; };
+		174015D32257598F00838B91 /* RepoListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015CD2257598F00838B91 /* RepoListAssembler.swift */; };
+		174015D42257598F00838B91 /* RepoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015CE2257598F00838B91 /* RepoListViewModel.swift */; };
+		174015D52257598F00838B91 /* RepoListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015CF2257598F00838B91 /* RepoListNavigator.swift */; };
+		174015DA22575A9E00838B91 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015D822575A9E00838B91 /* RepoCell.swift */; };
+		174015DB22575A9E00838B91 /* RepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174015D922575A9E00838B91 /* RepoCell.xib */; };
+		174015DD22575B5700838B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174015DC22575B5700838B91 /* Main.storyboard */; };
+		DFC97A753F17AEDE7E560DF7 /* libPods-MGAPIService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE741C1984DF2AE9CF6E6CD1 /* libPods-MGAPIService.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		158542189861F6884C410762 /* Pods-MGAPIService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGAPIService.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGAPIService/Pods-MGAPIService.release.xcconfig"; sourceTree = "<group>"; };
-		179F9E6321783D5F0018A62B /* MGAPIService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGAPIService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		179F9E6621783D5F0018A62B /* MGAPIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGAPIService.h; sourceTree = "<group>"; };
-		179F9E6721783D5F0018A62B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		174015812257385B00838B91 /* MGAPIService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGAPIService.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1740158A2257385C00838B91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1740158D2257385C00838B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1740158F2257385C00838B91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17401593225738C700838B91 /* MGAPIService-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MGAPIService-Bridging-Header.h"; sourceTree = "<group>"; };
+		17401596225738C800838B91 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../Desktop/MGAPIService/AppDelegate.swift; sourceTree = "<group>"; };
+		1740159B225738C800838B91 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		1740159C225738C800838B91 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		1740159D225738C800838B91 /* APIInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIInput.swift; sourceTree = "<group>"; };
+		1740159E225738C800838B91 /* APIOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIOutput.swift; sourceTree = "<group>"; };
+		1740159F225738C800838B91 /* APIUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
+		174015A2225738C800838B91 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		174015A4225738C800838B91 /* AppAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
+		174015A5225738C800838B91 /* AppNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
+		174015A6225738C800838B91 /* AppViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		174015A7225738C800838B91 /* AppUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUseCase.swift; sourceTree = "<group>"; };
+		174015A8225738C800838B91 /* UnitTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTestViewController.swift; sourceTree = "<group>"; };
+		174015AA225738C800838B91 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		174015AC225738C800838B91 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		174015AF225738C800838B91 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		174015C72257592900838B91 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
+		174015CA2257598F00838B91 /* RepoListUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListUseCase.swift; sourceTree = "<group>"; };
+		174015CB2257598F00838B91 /* RepoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListViewController.swift; sourceTree = "<group>"; };
+		174015CC2257598F00838B91 /* RepoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoViewModel.swift; sourceTree = "<group>"; };
+		174015CD2257598F00838B91 /* RepoListAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListAssembler.swift; sourceTree = "<group>"; };
+		174015CE2257598F00838B91 /* RepoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListViewModel.swift; sourceTree = "<group>"; };
+		174015CF2257598F00838B91 /* RepoListNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListNavigator.swift; sourceTree = "<group>"; };
+		174015D822575A9E00838B91 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
+		174015D922575A9E00838B91 /* RepoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoCell.xib; sourceTree = "<group>"; };
+		174015DC22575B5700838B91 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		179F9E6E217859A10018A62B /* APIOutputBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIOutputBase.swift; sourceTree = "<group>"; };
 		179F9E6F217859A10018A62B /* APIErrorBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorBase.swift; sourceTree = "<group>"; };
 		179F9E70217859A10018A62B /* APIInputBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIInputBase.swift; sourceTree = "<group>"; };
@@ -35,21 +88,176 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		179F9E6021783D5F0018A62B /* Frameworks */ = {
+		1740157E2257385B00838B91 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE1B16E29AA0B1C7E98C9675 /* libPods-MGAPIService.a in Frameworks */,
+				DFC97A753F17AEDE7E560DF7 /* libPods-MGAPIService.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		174015822257385B00838B91 /* MGAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				174015A9225738C800838B91 /* Assembler */,
+				17401594225738C800838B91 /* Domain */,
+				174015AD225738C800838B91 /* Extensions */,
+				17401597225738C800838B91 /* Platform */,
+				174015A0225738C800838B91 /* Scenes */,
+				174015AB225738C800838B91 /* Support */,
+				174015A8225738C800838B91 /* UnitTestViewController.swift */,
+				17401596225738C800838B91 /* AppDelegate.swift */,
+				178F563521EEC1D8008D22AB /* Sources */,
+				1740158A2257385C00838B91 /* Assets.xcassets */,
+				1740158C2257385C00838B91 /* LaunchScreen.storyboard */,
+				1740158F2257385C00838B91 /* Info.plist */,
+				17401593225738C700838B91 /* MGAPIService-Bridging-Header.h */,
+			);
+			path = MGAPIService;
+			sourceTree = "<group>";
+		};
+		17401594225738C800838B91 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				17401595225738C800838B91 /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		17401595225738C800838B91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				174015C72257592900838B91 /* Repo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		17401597225738C800838B91 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				17401598225738C800838B91 /* Repositories */,
+				17401599225738C800838B91 /* Services */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		17401598225738C800838B91 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		17401599225738C800838B91 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1740159A225738C800838B91 /* API */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1740159A225738C800838B91 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1740159B225738C800838B91 /* APIError.swift */,
+				1740159C225738C800838B91 /* APIService.swift */,
+				1740159D225738C800838B91 /* APIInput.swift */,
+				1740159E225738C800838B91 /* APIOutput.swift */,
+				1740159F225738C800838B91 /* APIUrls.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		174015A0225738C800838B91 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				174015C92257595700838B91 /* RepoList */,
+				174015A1225738C800838B91 /* Storyboards */,
+				174015A3225738C800838B91 /* App */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		174015A1225738C800838B91 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				174015A2225738C800838B91 /* Storyboards.swift */,
+				174015DC22575B5700838B91 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		174015A3225738C800838B91 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				174015A4225738C800838B91 /* AppAssembler.swift */,
+				174015A5225738C800838B91 /* AppNavigator.swift */,
+				174015A6225738C800838B91 /* AppViewModel.swift */,
+				174015A7225738C800838B91 /* AppUseCase.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		174015A9225738C800838B91 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				174015AA225738C800838B91 /* Assembler.swift */,
+			);
+			path = Assembler;
+			sourceTree = "<group>";
+		};
+		174015AB225738C800838B91 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				174015AC225738C800838B91 /* Utils.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		174015AD225738C800838B91 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				174015AF225738C800838B91 /* UIViewController+Rx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		174015C92257595700838B91 /* RepoList */ = {
+			isa = PBXGroup;
+			children = (
+				174015CD2257598F00838B91 /* RepoListAssembler.swift */,
+				174015CF2257598F00838B91 /* RepoListNavigator.swift */,
+				174015CA2257598F00838B91 /* RepoListUseCase.swift */,
+				174015CB2257598F00838B91 /* RepoListViewController.swift */,
+				174015CE2257598F00838B91 /* RepoListViewModel.swift */,
+				174015CC2257598F00838B91 /* RepoViewModel.swift */,
+				174015D822575A9E00838B91 /* RepoCell.swift */,
+				174015D922575A9E00838B91 /* RepoCell.xib */,
+			);
+			path = RepoList;
+			sourceTree = "<group>";
+		};
+		178F563521EEC1D8008D22AB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				179F9E6F217859A10018A62B /* APIErrorBase.swift */,
+				179F9E70217859A10018A62B /* APIInputBase.swift */,
+				179F9E6E217859A10018A62B /* APIOutputBase.swift */,
+				179F9E71217859A10018A62B /* APIServiceBase.swift */,
+				179F9E73217859A10018A62B /* CacheManager.swift */,
+				179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */,
+				179F9E75217859A10018A62B /* String+Base64.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		179F9E5921783D5F0018A62B = {
 			isa = PBXGroup;
 			children = (
-				179F9E6521783D5F0018A62B /* MGAPIService */,
+				174015822257385B00838B91 /* MGAPIService */,
 				179F9E6421783D5F0018A62B /* Products */,
 				AB94570F3BFB8BF7E45A686D /* Pods */,
 				6620CE3323A62DB92B974221 /* Frameworks */,
@@ -59,33 +267,9 @@
 		179F9E6421783D5F0018A62B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				179F9E6321783D5F0018A62B /* MGAPIService.framework */,
+				174015812257385B00838B91 /* MGAPIService.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		179F9E6521783D5F0018A62B /* MGAPIService */ = {
-			isa = PBXGroup;
-			children = (
-				179F9E6F217859A10018A62B /* APIErrorBase.swift */,
-				179F9E70217859A10018A62B /* APIInputBase.swift */,
-				179F9E6E217859A10018A62B /* APIOutputBase.swift */,
-				179F9E71217859A10018A62B /* APIServiceBase.swift */,
-				179F9E72217859A10018A62B /* Support */,
-				179F9E6621783D5F0018A62B /* MGAPIService.h */,
-				179F9E6721783D5F0018A62B /* Info.plist */,
-			);
-			path = MGAPIService;
-			sourceTree = "<group>";
-		};
-		179F9E72217859A10018A62B /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				179F9E73217859A10018A62B /* CacheManager.swift */,
-				179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */,
-				179F9E75217859A10018A62B /* String+Base64.swift */,
-			);
-			path = Support;
 			sourceTree = "<group>";
 		};
 		6620CE3323A62DB92B974221 /* Frameworks */ = {
@@ -107,27 +291,16 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		179F9E5E21783D5F0018A62B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				179F9E6821783D5F0018A62B /* MGAPIService.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		179F9E6221783D5F0018A62B /* MGAPIService */ = {
+		174015802257385B00838B91 /* MGAPIService */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 179F9E6B21783D5F0018A62B /* Build configuration list for PBXNativeTarget "MGAPIService" */;
+			buildConfigurationList = 174015902257385C00838B91 /* Build configuration list for PBXNativeTarget "MGAPIService" */;
 			buildPhases = (
-				F26246764E023874B6ACCA7C /* [CP] Check Pods Manifest.lock */,
-				179F9E5E21783D5F0018A62B /* Headers */,
-				179F9E5F21783D5F0018A62B /* Sources */,
-				179F9E6021783D5F0018A62B /* Frameworks */,
-				179F9E6121783D5F0018A62B /* Resources */,
+				9B53E00DE8C91E5E7AED1D06 /* [CP] Check Pods Manifest.lock */,
+				1740157D2257385B00838B91 /* Sources */,
+				1740157E2257385B00838B91 /* Frameworks */,
+				1740157F2257385B00838B91 /* Resources */,
+				C13757B47F4318D685427F3A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,8 +308,8 @@
 			);
 			name = MGAPIService;
 			productName = MGAPIService;
-			productReference = 179F9E6321783D5F0018A62B /* MGAPIService.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = 174015812257385B00838B91 /* MGAPIService.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -144,12 +317,13 @@
 		179F9E5A21783D5F0018A62B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = Framgia;
+				ORGANIZATIONNAME = "Sun Asterisk";
 				TargetAttributes = {
-					179F9E6221783D5F0018A62B = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+					174015802257385B00838B91 = {
+						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -159,29 +333,34 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 179F9E5921783D5F0018A62B;
 			productRefGroup = 179F9E6421783D5F0018A62B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				179F9E6221783D5F0018A62B /* MGAPIService */,
+				174015802257385B00838B91 /* MGAPIService */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		179F9E6121783D5F0018A62B /* Resources */ = {
+		1740157F2257385B00838B91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1740158E2257385C00838B91 /* LaunchScreen.storyboard in Resources */,
+				174015DD22575B5700838B91 /* Main.storyboard in Resources */,
+				1740158B2257385C00838B91 /* Assets.xcassets in Resources */,
+				174015DB22575A9E00838B91 /* RepoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F26246764E023874B6ACCA7C /* [CP] Check Pods Manifest.lock */ = {
+		9B53E00DE8C91E5E7AED1D06 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -203,26 +382,125 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C13757B47F4318D685427F3A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MGAPIService/Pods-MGAPIService-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MGAPIService/Pods-MGAPIService-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		179F9E5F21783D5F0018A62B /* Sources */ = {
+		1740157D2257385B00838B91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				179F9E77217859A10018A62B /* APIErrorBase.swift in Sources */,
-				179F9E7A217859A10018A62B /* CacheManager.swift in Sources */,
-				179F9E79217859A10018A62B /* APIServiceBase.swift in Sources */,
-				179F9E78217859A10018A62B /* APIInputBase.swift in Sources */,
-				179F9E76217859A10018A62B /* APIOutputBase.swift in Sources */,
-				179F9E7C217859A10018A62B /* String+Base64.swift in Sources */,
-				179F9E7B217859A10018A62B /* RxAlamofire+Multipart.swift in Sources */,
+				174015C0225738D300838B91 /* APIErrorBase.swift in Sources */,
+				174015B9225738C800838B91 /* AppViewModel.swift in Sources */,
+				174015D52257598F00838B91 /* RepoListNavigator.swift in Sources */,
+				174015D22257598F00838B91 /* RepoViewModel.swift in Sources */,
+				174015D12257598F00838B91 /* RepoListViewController.swift in Sources */,
+				174015DA22575A9E00838B91 /* RepoCell.swift in Sources */,
+				174015B0225738C800838B91 /* AppDelegate.swift in Sources */,
+				174015C5225738D300838B91 /* RxAlamofire+Multipart.swift in Sources */,
+				174015C1225738D300838B91 /* APIInputBase.swift in Sources */,
+				174015B2225738C800838B91 /* APIService.swift in Sources */,
+				174015BD225738C800838B91 /* Utils.swift in Sources */,
+				174015C82257592900838B91 /* Repo.swift in Sources */,
+				174015B8225738C800838B91 /* AppNavigator.swift in Sources */,
+				174015BF225738C800838B91 /* UIViewController+Rx.swift in Sources */,
+				174015C6225738D300838B91 /* String+Base64.swift in Sources */,
+				174015D02257598F00838B91 /* RepoListUseCase.swift in Sources */,
+				174015C3225738D300838B91 /* APIServiceBase.swift in Sources */,
+				174015B5225738C800838B91 /* APIUrls.swift in Sources */,
+				174015BC225738C800838B91 /* Assembler.swift in Sources */,
+				174015B4225738C800838B91 /* APIOutput.swift in Sources */,
+				174015C4225738D300838B91 /* CacheManager.swift in Sources */,
+				174015D32257598F00838B91 /* RepoListAssembler.swift in Sources */,
+				174015BB225738C800838B91 /* UnitTestViewController.swift in Sources */,
+				174015C2225738D300838B91 /* APIOutputBase.swift in Sources */,
+				174015BA225738C800838B91 /* AppUseCase.swift in Sources */,
+				174015B7225738C800838B91 /* AppAssembler.swift in Sources */,
+				174015D42257598F00838B91 /* RepoListViewModel.swift in Sources */,
+				174015B1225738C800838B91 /* APIError.swift in Sources */,
+				174015B3225738C800838B91 /* APIInput.swift in Sources */,
+				174015B6225738C800838B91 /* Storyboards.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		1740158C2257385C00838B91 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1740158D2257385C00838B91 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		174015912257385C00838B91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88B404C074A841CF2318998F /* Pods-MGAPIService.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MGAPIService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sun-asterisk.MGAPIService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MGAPIService/MGAPIService-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		174015922257385C00838B91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 158542189861F6884C410762 /* Pods-MGAPIService.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MGAPIService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sun-asterisk.MGAPIService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MGAPIService/MGAPIService-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		179F9E6921783D5F0018A62B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -345,78 +623,23 @@
 			};
 			name = Release;
 		};
-		179F9E6C21783D5F0018A62B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88B404C074A841CF2318998F /* Pods-MGAPIService.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MGAPIService/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.framgia.MGAPIService;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		179F9E6D21783D5F0018A62B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 158542189861F6884C410762 /* Pods-MGAPIService.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MGAPIService/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.framgia.MGAPIService;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		174015902257385C00838B91 /* Build configuration list for PBXNativeTarget "MGAPIService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174015912257385C00838B91 /* Debug */,
+				174015922257385C00838B91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		179F9E5D21783D5F0018A62B /* Build configuration list for PBXProject "MGAPIService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				179F9E6921783D5F0018A62B /* Debug */,
 				179F9E6A21783D5F0018A62B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		179F9E6B21783D5F0018A62B /* Build configuration list for PBXNativeTarget "MGAPIService" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				179F9E6C21783D5F0018A62B /* Debug */,
-				179F9E6D21783D5F0018A62B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

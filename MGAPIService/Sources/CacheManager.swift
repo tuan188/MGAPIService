@@ -1,3 +1,13 @@
+//
+//  CacheManager.swift
+//  MGAPIService
+//
+//  Created by Tuan Truong on 4/5/19.
+//  Copyright © 2019 Sun Asterisk. All rights reserved.
+//
+
+import UIKit
+
 public enum CacheManagerError: Error {
     case invalidFileName(urlString: String)
     case invalidFileData
@@ -28,7 +38,7 @@ open class CacheManager {
         if let fileName = self.encodedFileName(urlString: urlString),
             let url = self.fileURL(fileName: fileName) {
             if let data = try? Data(contentsOf: url),
-                let dictionary = NSKeyedUnarchiver.unarchiveObject(with: data) {
+                let dictionary = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
                 return dictionary
             } else {
                 throw CacheManagerError.invalidFileData
@@ -43,7 +53,7 @@ open class CacheManager {
             let fileURL = self.fileURL(fileName: fileName) else {
                 throw CacheManagerError.invalidFileName(urlString: urlString)
         }
-        let data = NSKeyedArchiver.archivedData(withRootObject: data)
+        let data = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
         try data.write(to: fileURL, options: .atomic)
     }
     

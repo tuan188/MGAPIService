@@ -1,3 +1,11 @@
+//
+//  APIServiceBase.swift
+//  MGAPIService
+//
+//  Created by Tuan Truong on 4/5/19.
+//  Copyright © 2019 Sun Asterisk. All rights reserved.
+//
+
 import ObjectMapper
 import Alamofire
 import RxSwift
@@ -11,13 +19,13 @@ public protocol JSONData {
     static func equal(left: JSONData, right: JSONData) -> Bool
 }
 
-extension Dictionary: JSONData where Dictionary == JSONDictionary {
+extension Dictionary: JSONData {
     static public func equal(left: JSONData, right: JSONData) -> Bool {
         return NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
     }
 }
 
-extension Array: JSONData where Array == JSONArray {
+extension Array: JSONData {
     static public func equal(left: JSONData, right: JSONData) -> Bool {
         let leftArray = left as! JSONArray
         let rightArray = right as! JSONArray
