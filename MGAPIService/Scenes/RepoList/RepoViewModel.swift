@@ -10,7 +10,7 @@ struct RepoViewModel {
     let repo: Repo
     
     var name: String {
-        return ""
+        return repo.name
     }
         
 }

@@ -37,6 +37,6 @@ extension RepoListAssembler where Self: DefaultAssembler {
     }
 
     func resolve() -> RepoListUseCaseType {
-        return RepoListUseCase()
+        return RepoListUseCase(repository: resolve())
     }
 }
