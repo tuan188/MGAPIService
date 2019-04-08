@@ -6,7 +6,7 @@
 //  Copyright © 2019 Sun Asterisk. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public enum CacheManagerError: Error {
     case invalidFileName(urlString: String)
@@ -38,7 +38,7 @@ open class CacheManager {
         if let fileName = self.encodedFileName(urlString: urlString),
             let url = self.fileURL(fileName: fileName) {
             if let data = try? Data(contentsOf: url),
-                let dictionary = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
+                let dictionary = NSKeyedUnarchiver.unarchiveObject(with: data) {
                 return dictionary
             } else {
                 throw CacheManagerError.invalidFileData
@@ -53,7 +53,7 @@ open class CacheManager {
             let fileURL = self.fileURL(fileName: fileName) else {
                 throw CacheManagerError.invalidFileName(urlString: urlString)
         }
-        let data = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+        let data = NSKeyedArchiver.archivedData(withRootObject: data)
         try data.write(to: fileURL, options: .atomic)
     }
     
