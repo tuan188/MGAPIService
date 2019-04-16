@@ -10,11 +10,11 @@ import Alamofire
 
 open class APIInputBase {
     public var headers: [String: String] = [:]
-    public let urlString: String
-    public let requestType: HTTPMethod
-    public let encoding: ParameterEncoding
-    public let parameters: [String: Any]?
-    public let requireAccessToken: Bool
+    public var urlString: String
+    public var requestType: HTTPMethod
+    public var encoding: ParameterEncoding
+    public var parameters: [String: Any]?
+    public var requireAccessToken: Bool
     public var accessToken: String?
     public var useCache: Bool = false {
         didSet {
