@@ -40,7 +40,7 @@
 		174015DA22575A9E00838B91 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015D822575A9E00838B91 /* RepoCell.swift */; };
 		174015DB22575A9E00838B91 /* RepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174015D922575A9E00838B91 /* RepoCell.xib */; };
 		174015DD22575B5700838B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174015DC22575B5700838B91 /* Main.storyboard */; };
-		1792A7A22265D5470046A641 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1792A7A12265D5470046A641 /* AppDelegate.swift */; };
+		17C67BE5228D3BAB002C1127 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C67BE4228D3BAB002C1127 /* AppDelegate.swift */; };
 		17DF0CFF225AD76D00376293 /* RepoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0CFE225AD76D00376293 /* RepoRepository.swift */; };
 		17DF0D01225AD81900376293 /* API+Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0D00225AD81900376293 /* API+Repo.swift */; };
 		17DF0D03225AD8D900376293 /* RepositoriesAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0D02225AD8D900376293 /* RepositoriesAssembler.swift */; };
@@ -78,7 +78,6 @@
 		174015D822575A9E00838B91 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		174015D922575A9E00838B91 /* RepoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoCell.xib; sourceTree = "<group>"; };
 		174015DC22575B5700838B91 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		1792A7A12265D5470046A641 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../Desktop/MGAPIService/AppDelegate.swift; sourceTree = "<group>"; };
 		179F9E6E217859A10018A62B /* APIOutputBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIOutputBase.swift; sourceTree = "<group>"; };
 		179F9E6F217859A10018A62B /* APIErrorBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorBase.swift; sourceTree = "<group>"; };
 		179F9E70217859A10018A62B /* APIInputBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIInputBase.swift; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		179F9E73217859A10018A62B /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxAlamofire+Multipart.swift"; sourceTree = "<group>"; };
 		179F9E75217859A10018A62B /* String+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
+		17C67BE4228D3BAB002C1127 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17DF0CFE225AD76D00376293 /* RepoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoRepository.swift; sourceTree = "<group>"; };
 		17DF0D00225AD81900376293 /* API+Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Repo.swift"; sourceTree = "<group>"; };
 		17DF0D02225AD8D900376293 /* RepositoriesAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesAssembler.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				178F563521EEC1D8008D22AB /* Sources */,
 				1740158A2257385C00838B91 /* Assets.xcassets */,
 				1740158C2257385C00838B91 /* LaunchScreen.storyboard */,
-				1792A7A12265D5470046A641 /* AppDelegate.swift */,
+				17C67BE4228D3BAB002C1127 /* AppDelegate.swift */,
 				1740158F2257385C00838B91 /* Info.plist */,
 				17401593225738C700838B91 /* MGAPIService-Bridging-Header.h */,
 			);
@@ -420,7 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1792A7A22265D5470046A641 /* AppDelegate.swift in Sources */,
+				17C67BE5228D3BAB002C1127 /* AppDelegate.swift in Sources */,
 				174015C0225738D300838B91 /* APIErrorBase.swift in Sources */,
 				174015B9225738C800838B91 /* AppViewModel.swift in Sources */,
 				174015D52257598F00838B91 /* RepoListNavigator.swift in Sources */,

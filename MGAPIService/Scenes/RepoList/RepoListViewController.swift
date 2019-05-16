@@ -12,6 +12,7 @@ import MGArchitecture
 import MGLoadMore
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 final class RepoListViewController: UIViewController, BindableType {
     
