@@ -14,18 +14,43 @@ import RxAlamofire
 public typealias JSONDictionary = [String: Any]
 public typealias JSONArray = [JSONDictionary]
 
+private let APIHeaderKey = "__API_HEADER__"
+
 public protocol JSONData {
+    var header: [AnyHashable: Any]? { get set }
+    
     init()
     static func equal(left: JSONData, right: JSONData) -> Bool
 }
 
-extension Dictionary: JSONData {
+extension JSONDictionary: JSONData {
+    public var header: [AnyHashable: Any]? {
+        get {
+            return self[APIHeaderKey] as? [AnyHashable : Any]
+        }
+        set {
+            self[APIHeaderKey] = newValue
+        }
+    }
+    
     static public func equal(left: JSONData, right: JSONData) -> Bool {
         return NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
     }
 }
 
-extension Array: JSONData {
+extension JSONArray: JSONData {
+    public var header: [AnyHashable: Any]? {
+        get {
+            return self.first?[APIHeaderKey] as? [AnyHashable : Any]
+        }
+        set {
+            if var dictionary = self.first {  // set header for first object only
+                dictionary.header = newValue
+                self[0] = dictionary
+            }
+        }
+    }
+    
     static public func equal(left: JSONData, right: JSONData) -> Bool {
         let leftArray = left as! JSONArray
         let rightArray = right as! JSONArray
@@ -61,11 +86,36 @@ open class APIBase {
             }
     }
     
+    open func request<T: Mappable & ResponseHeader>(_ input: APIInputBase) -> Observable<T> {
+        let response: Observable<JSONDictionary> = request(input)
+        return response
+            .map { json -> T in
+                if let t = T(JSON: json) {
+                    t.header = json.header
+                    return t
+                }
+                throw APIInvalidResponseError()
+        }
+    }
+    
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
         let response: Observable<JSONArray> = request(input)
         return response
             .map { json -> [T] in
                 return Mapper<T>().mapArray(JSONArray: json)
+            }
+    }
+    
+    open func request<T: Mappable & ResponseHeader>(_ input: APIInputBase) -> Observable<[T]> {
+        let response: Observable<JSONArray> = request(input)
+        return response
+            .map { json -> [T] in
+                let header = json.header
+                return Mapper<T>().mapArray(JSONArray: json)
+                    .map { dictionary in
+                        dictionary.header = header
+                        return dictionary
+                    }
             }
     }
     
@@ -163,12 +213,13 @@ open class APIBase {
     
     open func process<U: JSONData>(_ response: (HTTPURLResponse, Data)) throws -> U {
         let (response, data) = response
-        let json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
+        var json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
         let error: Error
         let statusCode = response.statusCode
         switch statusCode {
         case 200..<300:
             print("👍 [\(statusCode)] " + (response.url?.absoluteString ?? ""))
+            json?.header = response.allHeaderFields
             return json ?? U.init()
         default:
             error = handleResponseError(response: response, data: data, json: json)

@@ -8,6 +8,6 @@
 
 import ObjectMapper
 
-class APIOutput: APIOutputBase {
-
+class APIOutput: APIOutputBase, ResponseHeader {
+    var header: [AnyHashable : Any]? = nil
 }
