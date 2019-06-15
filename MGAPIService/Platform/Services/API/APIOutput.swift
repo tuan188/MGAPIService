@@ -9,5 +9,5 @@
 import ObjectMapper
 
 class APIOutput: APIOutputBase, ResponseHeader {
-    var header: [AnyHashable : Any]? = nil
+    var header: [AnyHashable: Any]? = nil
 }

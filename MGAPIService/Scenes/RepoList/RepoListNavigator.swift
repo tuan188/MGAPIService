@@ -17,6 +17,7 @@ struct RepoListNavigator: RepoListNavigatorType {
     unowned let navigationController: UINavigationController
 
     func toRepoDetail(repo: Repo) {
-
+        let vc: EventListViewController = assembler.resolve(navigationController: navigationController, repo: repo)
+        navigationController.pushViewController(vc, animated: true)
     }
 }

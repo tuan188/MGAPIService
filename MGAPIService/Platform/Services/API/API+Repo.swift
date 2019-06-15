@@ -13,6 +13,10 @@ extension API {
     func getRepoList(_ input: GetRepoListInput) -> Observable<GetRepoListOutput> {
         return request(input)
     }
+    
+    func getEventList(_ input: GetEventListInput) -> Observable<[Event]> {
+        return request(input)
+    }
 }
 
 // MARK: - GetRepoList
@@ -37,6 +41,22 @@ extension API {
         override func mapping(map: Map) {
             super.mapping(map: map)
             repos <- map["items"]
+        }
+    }
+}
+
+// MARK: - GetEventList
+extension API {
+    final class GetEventListInput: APIInput {
+        init(owner: String, repo: String, perPage: Int = 10) {
+            let params: JSONDictionary = [
+                "per_page": perPage
+            ]
+            let urlString = String(format: API.Urls.getEventList, owner, repo)
+            super.init(urlString: urlString,
+                       parameters: params,
+                       requestType: .get,
+                       requireAccessToken: true)
         }
     }
 }

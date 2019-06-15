@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1722ABF2229BC6D700329ED7 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF1229BC6D700329ED7 /* Event.swift */; };
+		1722ABFA229BC99200329ED7 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF4229BC99200329ED7 /* EventListViewController.swift */; };
+		1722ABFB229BC99200329ED7 /* EventListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF5229BC99200329ED7 /* EventListUseCase.swift */; };
+		1722ABFC229BC99200329ED7 /* EventListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF6229BC99200329ED7 /* EventListNavigator.swift */; };
+		1722ABFD229BC99200329ED7 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF7229BC99200329ED7 /* EventListViewModel.swift */; };
+		1722ABFE229BC99200329ED7 /* EventListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF8229BC99200329ED7 /* EventListAssembler.swift */; };
+		1722ABFF229BC99200329ED7 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722ABF9229BC99200329ED7 /* EventViewModel.swift */; };
+		1722AC02229BC9AD00329ED7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722AC00229BC9AD00329ED7 /* EventCell.swift */; };
+		1722AC03229BC9AD00329ED7 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1722AC01229BC9AD00329ED7 /* EventCell.xib */; };
 		1740158B2257385C00838B91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1740158A2257385C00838B91 /* Assets.xcassets */; };
 		1740158E2257385C00838B91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1740158C2257385C00838B91 /* LaunchScreen.storyboard */; };
 		174015B1225738C800838B91 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740159B225738C800838B91 /* APIError.swift */; };
@@ -50,6 +59,15 @@
 
 /* Begin PBXFileReference section */
 		158542189861F6884C410762 /* Pods-MGAPIService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGAPIService.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGAPIService/Pods-MGAPIService.release.xcconfig"; sourceTree = "<group>"; };
+		1722ABF1229BC6D700329ED7 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		1722ABF4229BC99200329ED7 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		1722ABF5229BC99200329ED7 /* EventListUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListUseCase.swift; sourceTree = "<group>"; };
+		1722ABF6229BC99200329ED7 /* EventListNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListNavigator.swift; sourceTree = "<group>"; };
+		1722ABF7229BC99200329ED7 /* EventListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
+		1722ABF8229BC99200329ED7 /* EventListAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListAssembler.swift; sourceTree = "<group>"; };
+		1722ABF9229BC99200329ED7 /* EventViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		1722AC00229BC9AD00329ED7 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		1722AC01229BC9AD00329ED7 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		174015812257385B00838B91 /* MGAPIService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGAPIService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1740158A2257385C00838B91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1740158D2257385C00838B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,6 +125,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1722ABF3229BC98400329ED7 /* EventList */ = {
+			isa = PBXGroup;
+			children = (
+				1722ABF8229BC99200329ED7 /* EventListAssembler.swift */,
+				1722ABF6229BC99200329ED7 /* EventListNavigator.swift */,
+				1722ABF5229BC99200329ED7 /* EventListUseCase.swift */,
+				1722ABF4229BC99200329ED7 /* EventListViewController.swift */,
+				1722ABF7229BC99200329ED7 /* EventListViewModel.swift */,
+				1722ABF9229BC99200329ED7 /* EventViewModel.swift */,
+				1722AC00229BC9AD00329ED7 /* EventCell.swift */,
+				1722AC01229BC9AD00329ED7 /* EventCell.xib */,
+			);
+			path = EventList;
+			sourceTree = "<group>";
+		};
 		174015822257385B00838B91 /* MGAPIService */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				174015C72257592900838B91 /* Repo.swift */,
+				1722ABF1229BC6D700329ED7 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +219,7 @@
 		174015A0225738C800838B91 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1722ABF3229BC98400329ED7 /* EventList */,
 				174015C92257595700838B91 /* RepoList */,
 				174015A1225738C800838B91 /* Storyboards */,
 				174015A3225738C800838B91 /* App */,
@@ -365,6 +400,7 @@
 				1740158E2257385C00838B91 /* LaunchScreen.storyboard in Resources */,
 				174015DD22575B5700838B91 /* Main.storyboard in Resources */,
 				1740158B2257385C00838B91 /* Assets.xcassets in Resources */,
+				1722AC03229BC9AD00329ED7 /* EventCell.xib in Resources */,
 				174015DB22575A9E00838B91 /* RepoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,18 +466,24 @@
 				174015D22257598F00838B91 /* RepoViewModel.swift in Sources */,
 				17DF0D01225AD81900376293 /* API+Repo.swift in Sources */,
 				174015D12257598F00838B91 /* RepoListViewController.swift in Sources */,
+				1722ABFE229BC99200329ED7 /* EventListAssembler.swift in Sources */,
 				174015DA22575A9E00838B91 /* RepoCell.swift in Sources */,
 				17DF0D03225AD8D900376293 /* RepositoriesAssembler.swift in Sources */,
 				174015C5225738D300838B91 /* RxAlamofire+Multipart.swift in Sources */,
 				174015C1225738D300838B91 /* APIInputBase.swift in Sources */,
 				174015B2225738C800838B91 /* APIService.swift in Sources */,
 				174015BD225738C800838B91 /* Utils.swift in Sources */,
+				1722ABFA229BC99200329ED7 /* EventListViewController.swift in Sources */,
+				1722ABFF229BC99200329ED7 /* EventViewModel.swift in Sources */,
+				1722ABFB229BC99200329ED7 /* EventListUseCase.swift in Sources */,
 				17DF0CFF225AD76D00376293 /* RepoRepository.swift in Sources */,
 				174015C82257592900838B91 /* Repo.swift in Sources */,
 				17C67BE7228D4E01002C1127 /* ResponseHeader.swift in Sources */,
 				174015B8225738C800838B91 /* AppNavigator.swift in Sources */,
 				174015BF225738C800838B91 /* UIViewController+Rx.swift in Sources */,
 				174015C6225738D300838B91 /* String+Base64.swift in Sources */,
+				1722ABF2229BC6D700329ED7 /* Event.swift in Sources */,
+				1722ABFC229BC99200329ED7 /* EventListNavigator.swift in Sources */,
 				174015D02257598F00838B91 /* RepoListUseCase.swift in Sources */,
 				174015C3225738D300838B91 /* APIServiceBase.swift in Sources */,
 				174015B5225738C800838B91 /* APIUrls.swift in Sources */,
@@ -451,10 +493,12 @@
 				174015D32257598F00838B91 /* RepoListAssembler.swift in Sources */,
 				174015BB225738C800838B91 /* UnitTestViewController.swift in Sources */,
 				174015C2225738D300838B91 /* APIOutputBase.swift in Sources */,
+				1722AC02229BC9AD00329ED7 /* EventCell.swift in Sources */,
 				174015BA225738C800838B91 /* AppUseCase.swift in Sources */,
 				174015B7225738C800838B91 /* AppAssembler.swift in Sources */,
 				174015D42257598F00838B91 /* RepoListViewModel.swift in Sources */,
 				174015B1225738C800838B91 /* APIError.swift in Sources */,
+				1722ABFD229BC99200329ED7 /* EventListViewModel.swift in Sources */,
 				174015B3225738C800838B91 /* APIInput.swift in Sources */,
 				174015B6225738C800838B91 /* Storyboards.swift in Sources */,
 			);

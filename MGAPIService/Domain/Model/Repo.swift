@@ -17,6 +17,7 @@ struct Repo {
     var starCount: Int
     var folkCount: Int
     var avatarURLString: String
+    var owner: String
 }
 
 extension Repo {
@@ -28,7 +29,8 @@ extension Repo {
             urlString: "",
             starCount: 0,
             folkCount: 0,
-            avatarURLString: ""
+            avatarURLString: "",
+            owner: ""
         )
     }
 }
@@ -49,5 +51,6 @@ extension Repo: Mappable {
         starCount <- map["stargazers_count"]
         folkCount <- map["forks"]
         avatarURLString <- map["owner.avatar_url"]
+        owner <- map["owner.login"]
     }
 }

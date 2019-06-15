@@ -22,7 +22,7 @@ struct RepoListUseCase: RepoListUseCaseType {
     }
     
     func loadMoreRepoList(page: Int) -> Observable<PagingInfo<Repo>> {
-        return repository.getRepoList(page: page, perPage: 10, useCache: page == 1)
+        return repository.getRepoList(page: page, perPage: 20, useCache: page == 1)
     }
 
 }
