@@ -37,13 +37,13 @@ extension EventListViewModel: ViewModelType {
     }
     
     func transform(_ input: Input) -> Output {
-        let loadMoreOutput = setupLoadMorePaging(
+        let loadMoreOutput = configPagination(
             loadTrigger: input.loadTrigger,
             getItems: {
                 self.useCase.getEventList(owner: self.repo.owner, repo: self.repo.name)
             },
-            refreshTrigger: input.reloadTrigger,
-            refreshItems: {
+            reloadTrigger: input.reloadTrigger,
+            reloadItems: {
                 self.useCase.getEventList(owner: self.repo.owner, repo: self.repo.name)
             },
             loadMoreTrigger: input.loadMoreTrigger,

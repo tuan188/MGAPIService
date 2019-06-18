@@ -24,7 +24,7 @@ final class RepoRepository: RepoRepositoryType {
                 }
                 print(output.header as Any)
                 return PagingInfo<Repo>(page: page, items: repos)
-        }
+            }
     }
     
     func getEventList(owner: String, repo: String) -> Observable<[Event]> {

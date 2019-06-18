@@ -9,5 +9,5 @@
 import UIKit
 
 public protocol ResponseHeader: class {
-    var header: [AnyHashable : Any]? { get set }
+    var header: [AnyHashable: Any]? { get set }
 }

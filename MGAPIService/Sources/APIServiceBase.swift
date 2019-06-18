@@ -14,7 +14,7 @@ import RxAlamofire
 public typealias JSONDictionary = [String: Any]
 public typealias JSONArray = [JSONDictionary]
 
-private let APIHeaderKey = "__API_HEADER__"
+private let kAPIHeaderKey = "__API_HEADER__"
 
 public protocol JSONData {
     var header: [AnyHashable: Any]? { get set }
@@ -26,14 +26,15 @@ public protocol JSONData {
 extension JSONDictionary: JSONData {
     public var header: [AnyHashable: Any]? {
         get {
-            return self[APIHeaderKey] as? [AnyHashable : Any]
+            return self[kAPIHeaderKey] as? [AnyHashable: Any]
         }
         set {
-            self[APIHeaderKey] = newValue
+            self[kAPIHeaderKey] = newValue
         }
     }
     
-    static public func equal(left: JSONData, right: JSONData) -> Bool {
+    public static func equal(left: JSONData, right: JSONData) -> Bool {
+        // swiftlint:disable:next force_cast
         return NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
     }
 }
@@ -41,7 +42,7 @@ extension JSONDictionary: JSONData {
 extension JSONArray: JSONData {
     public var header: [AnyHashable: Any]? {
         get {
-            return self.first?[APIHeaderKey] as? [AnyHashable : Any]
+            return self.first?[kAPIHeaderKey] as? [AnyHashable: Any]
         }
         set {
             if var dictionary = self.first {  // set header for first object only
@@ -51,9 +52,9 @@ extension JSONArray: JSONData {
         }
     }
     
-    static public func equal(left: JSONData, right: JSONData) -> Bool {
-        let leftArray = left as! JSONArray
-        let rightArray = right as! JSONArray
+    public static func equal(left: JSONData, right: JSONData) -> Bool {
+        let leftArray = left as! JSONArray  // swiftlint:disable:this force_cast
+        let rightArray = right as! JSONArray  // swiftlint:disable:this force_cast
         guard leftArray.count == rightArray.count else { return false }
         for i in 0..<leftArray.count {
             if !JSONDictionary.equal(left: leftArray[i], right: rightArray[i]) {
@@ -95,7 +96,7 @@ open class APIBase {
                     return t
                 }
                 throw APIInvalidResponseError()
-        }
+            }
     }
     
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
@@ -133,7 +134,7 @@ open class APIBase {
                                 method: uploadInput.requestType,
                                 headers: uploadInput.headers) { (multipartFormData) in
                                     input.parameters?.forEach { key, value in
-                                        if let data = String(describing: value).data(using:.utf8) {
+                                        if let data = String(describing: value).data(using: .utf8) {
                                             multipartFormData.append(data, withName: key)
                                         }
                                     }
@@ -201,7 +202,7 @@ open class APIBase {
                 print(error)
                 return Observable.empty()
             }
-            .map { $0 as! U }
+            .map { $0 as! U }  // swiftlint:disable:this force_cast
         return input.useCache
             ? Observable.concat(cacheRequest, urlRequest).distinctUntilChanged(U.equal)
             : urlRequest
@@ -220,7 +221,7 @@ open class APIBase {
         case 200..<300:
             print("👍 [\(statusCode)] " + (response.url?.absoluteString ?? ""))
             json?.header = response.allHeaderFields
-            return json ?? U.init()
+            return json ?? U.init()  // swiftlint:disable:this explicit_init
         default:
             error = handleResponseError(response: response, data: data, json: json)
             print("❌ [\(statusCode)] " + (response.url?.absoluteString ?? ""))

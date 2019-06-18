@@ -19,7 +19,7 @@ open class APIInputBase {
     public var useCache: Bool = false {
         didSet {
             if requestType != .get || self is APIUploadInputBase {
-                fatalError()
+                fatalError()  // swiftlint:disable:this fatal_error_message
             }
         }
     }
@@ -27,9 +27,9 @@ open class APIInputBase {
     public var password: String?
     
     public init(urlString: String,
-         parameters: [String: Any]?,
-         requestType: HTTPMethod,
-         requireAccessToken: Bool) {
+                parameters: [String: Any]?,
+                requestType: HTTPMethod,
+                requireAccessToken: Bool) {
         self.urlString = urlString
         self.parameters = parameters
         self.requestType = requestType
@@ -60,12 +60,12 @@ extension APIInputBase: CustomStringConvertible {
         if requestType == .get {
             return [
                 "🌎 \(requestType.rawValue) \(urlEncodingString)"
-                ].joined(separator: "\n")
+            ].joined(separator: "\n")
         }
         return [
             "🌎 \(requestType.rawValue) \(urlString)",
             "Parameters: \(String(describing: parameters ?? JSONDictionary()))"
-            ].joined(separator: "\n")
+        ].joined(separator: "\n")
     }
 }
 
@@ -87,10 +87,10 @@ open class APIUploadInputBase: APIInputBase {
     public let data: [APIUploadData]
     
     public init(data: [APIUploadData],
-         urlString: String,
-         parameters: [String: Any]?,
-         requestType: HTTPMethod,
-         requireAccessToken: Bool) {
+                urlString: String,
+                parameters: [String: Any]?,
+                requestType: HTTPMethod,
+                requireAccessToken: Bool) {
         
         self.data = data
         
