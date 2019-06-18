@@ -74,7 +74,7 @@ final class RepoListViewController: UIViewController, BindableType {
         output.loading
             .drive(rx.isLoading)
             .disposed(by: rx.disposeBag)
-        output.refreshing
+        output.reloading
             .drive(tableView.refreshing)
             .disposed(by: rx.disposeBag)
         output.loadingMore

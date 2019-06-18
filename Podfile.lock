@@ -1,42 +1,42 @@
 PODS:
   - Alamofire (4.8.2)
-  - MGArchitecture (0.4.0):
-    - RxAtomic (~> 4.4)
-    - RxCocoa (~> 4.4)
-    - RxSwift (~> 4.4)
-  - MGLoadMore (0.3.0):
+  - MGArchitecture (0.5.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - MGLoadMore (0.4.0):
     - MJRefresh (~> 3.1)
-    - RxAtomic (~> 4.4)
-    - RxCocoa (~> 4.4)
-    - RxSwift (~> 4.4)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - MJRefresh (3.1.16)
-  - "NSObject+Rx (4.4.0)":
-    - RxSwift (~> 4.3)
-  - ObjectMapper (3.3.0)
-  - Reusable (4.0.4):
-    - Reusable/Storyboard (= 4.0.4)
-    - Reusable/View (= 4.0.4)
-  - Reusable/Storyboard (4.0.4)
-  - Reusable/View (4.0.4)
-  - RxAlamofire (4.4.0):
-    - RxAlamofire/Core (= 4.4.0)
-  - RxAlamofire/Core (4.4.0):
+  - "NSObject+Rx (5.0.0)":
+    - RxSwift (~> 5.0)
+  - ObjectMapper (3.5.0)
+  - Reusable (4.1.0):
+    - Reusable/Storyboard (= 4.1.0)
+    - Reusable/View (= 4.1.0)
+  - Reusable/Storyboard (4.1.0)
+  - Reusable/View (4.1.0)
+  - RxAlamofire (5.0.0):
+    - RxAlamofire/Core (= 5.0.0)
+  - RxAlamofire/Core (5.0.0):
     - Alamofire (~> 4.8)
-    - RxSwift (~> 4.4)
-  - RxAtomic (4.4.2)
-  - RxCocoa (4.5.0):
-    - RxSwift (>= 4.4.2, ~> 4.4)
-  - RxSwift (4.5.0)
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
   - Then (2.4.0)
 
 DEPENDENCIES:
-  - MGArchitecture (= 0.4.0)
-  - MGLoadMore (= 0.3.0)
+  - MGArchitecture (= 0.5.0)
+  - MGLoadMore (= 0.4.0)
   - MJRefresh (~> 3.1)
-  - "NSObject+Rx (= 4.4)"
-  - ObjectMapper (= 3.3)
-  - Reusable (= 4.0.4)
-  - RxAlamofire (= 4.4)
+  - "NSObject+Rx (= 5.0)"
+  - ObjectMapper (= 3.5)
+  - Reusable (= 4.1.0)
+  - RxAlamofire (= 5.0)
   - Then (= 2.4)
 
 SPEC REPOS:
@@ -49,25 +49,25 @@ SPEC REPOS:
     - ObjectMapper
     - Reusable
     - RxAlamofire
-    - RxAtomic
     - RxCocoa
+    - RxRelay
     - RxSwift
     - Then
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  MGArchitecture: 968ad647af56abb8f02a9d4f3d7310fd321adc38
-  MGLoadMore: e8943ffd39d51f67089d911e0113254e34f28122
+  MGArchitecture: 66b4b049d3fa3ff96b3bd134b56ea2dd67dc95d6
+  MGLoadMore: bdd1e22597bed2f1f6265a052c206b6fffb17ec5
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
-  "NSObject+Rx": 3291262e7eddc434b6c98d1e85dedc4faa451ace
-  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  Reusable: 7fc772097df3e5fc86f59d8a7af9708e49b5ff55
-  RxAlamofire: ecc5e458ee11250938d23360179eb3a37cd3ee1e
-  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
-  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
-  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  "NSObject+Rx": 6151a97d171f7187c4183746acc42d9451952a7b
+  ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+  Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
+  RxAlamofire: e7875a012aff55345672d0f70a2a9cd6aeb0f211
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
 
-PODFILE CHECKSUM: 45372c44a52b1bfdb7fe8c1bface0d595a6c1705
+PODFILE CHECKSUM: 5f60a28c7737657b2ebd435e678ba10b1928a589
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.2
