@@ -3,8 +3,8 @@ platform :ios, '9.0'
 def pods
     inhibit_all_warnings!
     
-    pod 'MGArchitecture', '0.5.0'
-    pod 'MGLoadMore', '0.4.0'
+    pod 'MGArchitecture', '1.0.0'
+    pod 'MGLoadMore', '0.5.0'
 
     pod 'RxAlamofire', '5.0'
     pod 'NSObject+Rx', '5.0'

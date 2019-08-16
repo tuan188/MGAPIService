@@ -8,6 +8,6 @@
 
 import ObjectMapper
 
-class APIOutput: APIOutputBase, ResponseHeader {  // swiftlint:disable:this final_class
-    var header: [AnyHashable: Any]?
+class APIOutput: APIOutputBase {  // swiftlint:disable:this final_class
+    
 }

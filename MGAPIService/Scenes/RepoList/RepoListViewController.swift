@@ -68,24 +68,27 @@ final class RepoListViewController: UIViewController, BindableType {
                     }
             }
             .disposed(by: rx.disposeBag)
+        
         output.error
             .drive(rx.error)
             .disposed(by: rx.disposeBag)
+        
         output.loading
             .drive(rx.isLoading)
             .disposed(by: rx.disposeBag)
+        
         output.reloading
-            .drive(tableView.refreshing)
+            .drive(tableView.isRefreshing)
             .disposed(by: rx.disposeBag)
+        
         output.loadingMore
-            .drive(tableView.loadingMore)
+            .drive(tableView.isLoadingMore)
             .disposed(by: rx.disposeBag)
-        output.fetchItems
-            .drive()
-            .disposed(by: rx.disposeBag)
+        
         output.selectedRepo
             .drive()
             .disposed(by: rx.disposeBag)
+        
         output.isEmptyData
             .drive()
             .disposed(by: rx.disposeBag)

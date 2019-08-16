@@ -17,12 +17,13 @@ protocol RepoRepositoryType {
 final class RepoRepository: RepoRepositoryType {
     func getRepoList(page: Int, perPage: Int, useCache: Bool) -> Observable<PagingInfo<Repo>> {
         let input = API.GetRepoListInput(page: page, perPage: perPage)
+        input.useCache = true
+        
         return API.shared.getRepoList(input)
             .map { output in
                 guard let repos = output.repos else {
                     throw APIInvalidResponseError()
                 }
-                print(output.header as Any)
                 return PagingInfo<Repo>(page: page, items: repos)
             }
     }

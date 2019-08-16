@@ -14,44 +14,21 @@ import RxAlamofire
 public typealias JSONDictionary = [String: Any]
 public typealias JSONArray = [JSONDictionary]
 
-private let kAPIHeaderKey = "__API_HEADER__"
-
 public protocol JSONData {
-    var header: [AnyHashable: Any]? { get set }
-    
     init()
     static func equal(left: JSONData, right: JSONData) -> Bool
 }
 
 extension JSONDictionary: JSONData {
-    public var header: [AnyHashable: Any]? {
-        get {
-            return self[kAPIHeaderKey] as? [AnyHashable: Any]
-        }
-        set {
-            self[kAPIHeaderKey] = newValue
-        }
-    }
-    
     public static func equal(left: JSONData, right: JSONData) -> Bool {
         // swiftlint:disable:next force_cast
-        return NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
+        let equal = NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
+        print("equal = ", equal)
+        return equal
     }
 }
 
 extension JSONArray: JSONData {
-    public var header: [AnyHashable: Any]? {
-        get {
-            return self.first?[kAPIHeaderKey] as? [AnyHashable: Any]
-        }
-        set {
-            if var dictionary = self.first {  // set header for first object only
-                dictionary.header = newValue
-                self[0] = dictionary
-            }
-        }
-    }
-    
     public static func equal(left: JSONData, right: JSONData) -> Bool {
         let leftArray = left as! JSONArray  // swiftlint:disable:this force_cast
         let rightArray = right as! JSONArray  // swiftlint:disable:this force_cast
@@ -87,36 +64,11 @@ open class APIBase {
             }
     }
     
-    open func request<T: Mappable & ResponseHeader>(_ input: APIInputBase) -> Observable<T> {
-        let response: Observable<JSONDictionary> = request(input)
-        return response
-            .map { json -> T in
-                if let t = T(JSON: json) {
-                    t.header = json.header
-                    return t
-                }
-                throw APIInvalidResponseError()
-            }
-    }
-    
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
         let response: Observable<JSONArray> = request(input)
         return response
             .map { json -> [T] in
                 return Mapper<T>().mapArray(JSONArray: json)
-            }
-    }
-    
-    open func request<T: Mappable & ResponseHeader>(_ input: APIInputBase) -> Observable<[T]> {
-        let response: Observable<JSONArray> = request(input)
-        return response
-            .map { json -> [T] in
-                let header = json.header
-                return Mapper<T>().mapArray(JSONArray: json)
-                    .map { dictionary in
-                        dictionary.header = header
-                        return dictionary
-                    }
             }
     }
     
@@ -203,6 +155,7 @@ open class APIBase {
                 return Observable.empty()
             }
             .map { $0 as! U }  // swiftlint:disable:this force_cast
+        
         return input.useCache
             ? Observable.concat(cacheRequest, urlRequest).distinctUntilChanged(U.equal)
             : urlRequest
@@ -214,13 +167,12 @@ open class APIBase {
     
     open func process<U: JSONData>(_ response: (HTTPURLResponse, Data)) throws -> U {
         let (response, data) = response
-        var json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
+        let json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
         let error: Error
         let statusCode = response.statusCode
         switch statusCode {
         case 200..<300:
             print("👍 [\(statusCode)] " + (response.url?.absoluteString ?? ""))
-            json?.header = response.allHeaderFields
             return json ?? U.init()  // swiftlint:disable:this explicit_init
         default:
             error = handleResponseError(response: response, data: data, json: json)

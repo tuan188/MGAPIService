@@ -29,56 +29,38 @@ extension RepoListViewModel: ViewModelType {
         let loading: Driver<Bool>
         let reloading: Driver<Bool>
         let loadingMore: Driver<Bool>
-        let fetchItems: Driver<Void>
         let repoList: Driver<[Repo]>
         let selectedRepo: Driver<Void>
         let isEmptyData: Driver<Bool>
     }
     
     func transform(_ input: Input) -> Output {
-        let configOutput = configPagination(
+        let result = configPagination(
             loadTrigger: input.loadTrigger,
-            getItems: useCase.getRepoList,
             reloadTrigger: input.reloadTrigger,
-            reloadItems: useCase.getRepoList,
             loadMoreTrigger: input.loadMoreTrigger,
-            loadMoreItems: useCase.loadMoreRepoList)
+            getItems: useCase.getRepoList)
         
-        let (page, fetchItems, loadError, loading, reloading, loadingMore) = configOutput
+        let (page, loadError, loading, reloading, loadingMore) = result.destructured
         
         let repoList = page
-            .map { $0.items.map { $0 } }
-            .asDriverOnErrorJustComplete()
+            .debug("repoList", trimOutput: true)
+            .map { $0.items }
         
-        let selectedRepo = input.selectRepoTrigger
-            .withLatestFrom(repoList) {
-                return ($0, $1)
-            }
-            .map { indexPath, repoList in
-                return repoList[indexPath.row]
-            }
-            .do(onNext: { repo in
-                self.navigator.toRepoDetail(repo: repo)
-            })
+        let selectedRepo = select(trigger: input.selectRepoTrigger, items: repoList)
+            .do(onNext: navigator.toRepoDetail)
             .mapToVoid()
         
-        let isEmptyData = Driver.combineLatest(fetchItems, Driver.merge(loading, reloading))
-            .withLatestFrom(repoList) { ($0.1, $1.isEmpty) }
-            .map { args -> Bool in
-                let (loading, isEmpty) = args
-                if loading { return false }
-                return isEmpty
-            }
+        let isEmpty = checkIfDataIsEmpty(trigger: Driver.merge(loading, reloading), items: repoList)
         
         return Output(
             error: loadError,
             loading: loading,
             reloading: reloading,
             loadingMore: loadingMore,
-            fetchItems: fetchItems,
             repoList: repoList,
             selectedRepo: selectedRepo,
-            isEmptyData: isEmptyData
+            isEmptyData: isEmpty
         )
     }
 }

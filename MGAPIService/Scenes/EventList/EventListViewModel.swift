@@ -29,33 +29,20 @@ extension EventListViewModel: ViewModelType {
         let error: Driver<Error>
         let loading: Driver<Bool>
         let refreshing: Driver<Bool>
-        let loadingMore: Driver<Bool>
-        let fetchItems: Driver<Void>
         let eventList: Driver<[Event]>
         let selectedEvent: Driver<Void>
-        let isEmptyData: Driver<Bool>
+        let isEmpty: Driver<Bool>
     }
     
     func transform(_ input: Input) -> Output {
-        let loadMoreOutput = configPagination(
+        let result = getList(
             loadTrigger: input.loadTrigger,
-            getItems: {
-                self.useCase.getEventList(owner: self.repo.owner, repo: self.repo.name)
-            },
             reloadTrigger: input.reloadTrigger,
-            reloadItems: {
+            getItems: { _ in
                 self.useCase.getEventList(owner: self.repo.owner, repo: self.repo.name)
-            },
-            loadMoreTrigger: input.loadMoreTrigger,
-            loadMoreItems: { page in
-                self.useCase.loadMoreEventList(owner: self.repo.owner, repo: self.repo.name, page: page)
             })
         
-        let (page, fetchItems, loadError, loading, refreshing, loadingMore) = loadMoreOutput
-        
-        let eventList = page
-            .map { $0.items.map { $0 } }
-            .asDriverOnErrorJustComplete()
+        let (eventList, loadError, loading, refreshing) = result.destructured
         
         let selectedEvent = input.selectEventTrigger
             .withLatestFrom(eventList) {
@@ -69,23 +56,15 @@ extension EventListViewModel: ViewModelType {
             })
             .mapToVoid()
         
-        let isEmptyData = Driver.combineLatest(fetchItems, Driver.merge(loading, refreshing))
-            .withLatestFrom(eventList) { ($0.1, $1.isEmpty) }
-            .map { args -> Bool in
-                let (loading, isEmpty) = args
-                if loading { return false }
-                return isEmpty
-            }
+        let isEmpty = checkIfDataIsEmpty(trigger: Driver.merge(loading, refreshing), items: eventList)
         
         return Output(
             error: loadError,
             loading: loading,
             refreshing: refreshing,
-            loadingMore: loadingMore,
-            fetchItems: fetchItems,
             eventList: eventList,
             selectedEvent: selectedEvent,
-            isEmptyData: isEmptyData
+            isEmpty: isEmpty
         )
     }
 }
