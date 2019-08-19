@@ -19,7 +19,7 @@ extension Reactive where Base: UIViewController {
     
     var isLoading: Binder<Bool> {
         return Binder(base) { _, isLoading in
-            print(isLoading)
+            print("isLoading:", isLoading)
         }
     }
 }

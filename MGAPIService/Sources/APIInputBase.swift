@@ -53,14 +53,10 @@ extension APIInputBase {
         }
         return urlComponents.url?.absoluteString ?? urlString
     }
-}
-
-extension APIInputBase: CustomStringConvertible {
-    open var description: String {
-        if requestType == .get {
-            return [
-                "🌎 \(requestType.rawValue) \(urlEncodingString)"
-            ].joined(separator: "\n")
+    
+    open func description(isIncludedParameters: Bool) -> String {
+        if requestType == .get || !isIncludedParameters {
+            return "🌎 \(requestType.rawValue) \(urlEncodingString)"
         }
         return [
             "🌎 \(requestType.rawValue) \(urlString)",

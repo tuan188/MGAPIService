@@ -50,6 +50,7 @@
 		174015DB22575A9E00838B91 /* RepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174015D922575A9E00838B91 /* RepoCell.xib */; };
 		174015DD22575B5700838B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174015DC22575B5700838B91 /* Main.storyboard */; };
 		17C67BE5228D3BAB002C1127 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C67BE4228D3BAB002C1127 /* AppDelegate.swift */; };
+		17C98945230A374B00A2DB59 /* LogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C98944230A374B00A2DB59 /* LogOptions.swift */; };
 		17DF0CFF225AD76D00376293 /* RepoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0CFE225AD76D00376293 /* RepoRepository.swift */; };
 		17DF0D01225AD81900376293 /* API+Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0D00225AD81900376293 /* API+Repo.swift */; };
 		17DF0D03225AD8D900376293 /* RepositoriesAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0D02225AD8D900376293 /* RepositoriesAssembler.swift */; };
@@ -104,6 +105,7 @@
 		179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxAlamofire+Multipart.swift"; sourceTree = "<group>"; };
 		179F9E75217859A10018A62B /* String+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
 		17C67BE4228D3BAB002C1127 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		17C98944230A374B00A2DB59 /* LogOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOptions.swift; sourceTree = "<group>"; };
 		17DF0CFE225AD76D00376293 /* RepoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoRepository.swift; sourceTree = "<group>"; };
 		17DF0D00225AD81900376293 /* API+Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Repo.swift"; sourceTree = "<group>"; };
 		17DF0D02225AD8D900376293 /* RepositoriesAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesAssembler.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				179F9E73217859A10018A62B /* CacheManager.swift */,
 				179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */,
 				179F9E75217859A10018A62B /* String+Base64.swift */,
+				17C98944230A374B00A2DB59 /* LogOptions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				174015B9225738C800838B91 /* AppViewModel.swift in Sources */,
 				174015D52257598F00838B91 /* RepoListNavigator.swift in Sources */,
 				174015D22257598F00838B91 /* RepoViewModel.swift in Sources */,
+				17C98945230A374B00A2DB59 /* LogOptions.swift in Sources */,
 				17DF0D01225AD81900376293 /* API+Repo.swift in Sources */,
 				174015D12257598F00838B91 /* RepoListViewController.swift in Sources */,
 				1722ABFE229BC99200329ED7 /* EventListAssembler.swift in Sources */,

@@ -23,7 +23,6 @@ extension JSONDictionary: JSONData {
     public static func equal(left: JSONData, right: JSONData) -> Bool {
         // swiftlint:disable:next force_cast
         let equal = NSDictionary(dictionary: left as! JSONDictionary).isEqual(to: right as! JSONDictionary)
-        print("equal = ", equal)
         return equal
     }
 }
@@ -45,11 +44,13 @@ extension JSONArray: JSONData {
 open class APIBase {
    
     public var manager: Alamofire.SessionManager
+    public var logOptions = LogOptions.default
     
     public init() {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 60
         configuration.timeoutIntervalForResource = 60
+        
         manager = Alamofire.SessionManager(configuration: configuration)
     }
     
@@ -76,8 +77,10 @@ open class APIBase {
         let user = input.user
         let password = input.password
         let urlRequest = preprocess(input)
-            .do(onNext: { input in
-                print(input)
+            .do(onNext: { [unowned self] input in
+                if self.logOptions.contains(.request) {
+                    print(input.description(isIncludedParameters: self.logOptions.contains(.requestParameters)))
+                }
             })
             .flatMapLatest { [unowned self] input -> Observable<DataRequest> in
                 if let uploadInput = input as? APIUploadInputBase {
@@ -150,11 +153,19 @@ open class APIBase {
             .map {
                 try CacheManager.sharedInstance.read(urlString: $0.urlEncodingString)
             }
-            .catchError { error in
-                print(error)
+            .catchError { [unowned self] error in
+                if self.logOptions.contains(.error) {
+                    print(error)
+                }
                 return Observable.empty()
             }
             .map { $0 as! U }  // swiftlint:disable:this force_cast
+            .do(onNext: { [unowned self] data in
+                if self.logOptions.contains(.cache) {
+                    print("[CACHE]")
+                    print(data)
+                }
+            })
         
         return input.useCache
             ? Observable.concat(cacheRequest, urlRequest).distinctUntilChanged(U.equal)
@@ -166,21 +177,42 @@ open class APIBase {
     }
     
     open func process<U: JSONData>(_ response: (HTTPURLResponse, Data)) throws -> U {
-        let (response, data) = response
+        let (urlResponse, data) = response
         let json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
+        
         let error: Error
-        let statusCode = response.statusCode
+        let statusCode = urlResponse.statusCode
+        
         switch statusCode {
         case 200..<300:
-            print("👍 [\(statusCode)] " + (response.url?.absoluteString ?? ""))
+            if logOptions.contains(.responseStatus) {
+                print("👍 [\(statusCode)] " + (urlResponse.url?.absoluteString ?? ""))
+            }
+            
+            if logOptions.contains(.urlResponse) {
+                print(urlResponse)
+            }
+            
+            if logOptions.contains(.responseData) {
+                print("[RESPONSE DATA]")
+                print(json ?? data)
+            }
+            
             return json ?? U.init()  // swiftlint:disable:this explicit_init
         default:
-            error = handleResponseError(response: response, data: data, json: json)
-            print("❌ [\(statusCode)] " + (response.url?.absoluteString ?? ""))
-            if let json = json {
-                print(json)
-            } else {
-                print(data)
+            error = handleResponseError(response: urlResponse, data: data, json: json)
+            
+            if logOptions.contains(.responseStatus) {
+                print("❌ [\(statusCode)] " + (urlResponse.url?.absoluteString ?? ""))
+            }
+            
+            if logOptions.contains(.urlResponse) {
+                print(urlResponse)
+            }
+            
+            if logOptions.contains(.error) || logOptions.contains(.responseData) {
+                print("[RESPONSE DATA]")
+                print(json ?? data)
             }
         }
         throw error

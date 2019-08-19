@@ -44,7 +44,6 @@ extension RepoListViewModel: ViewModelType {
         let (page, loadError, loading, reloading, loadingMore) = result.destructured
         
         let repoList = page
-            .debug("repoList", trimOutput: true)
             .map { $0.items }
         
         let selectedRepo = select(trigger: input.selectRepoTrigger, items: repoList)
