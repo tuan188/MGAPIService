@@ -31,12 +31,15 @@ extension JSONArray: JSONData {
     public static func equal(left: JSONData, right: JSONData) -> Bool {
         let leftArray = left as! JSONArray  // swiftlint:disable:this force_cast
         let rightArray = right as! JSONArray  // swiftlint:disable:this force_cast
+        
         guard leftArray.count == rightArray.count else { return false }
+        
         for i in 0..<leftArray.count {
             if !JSONDictionary.equal(left: leftArray[i], right: rightArray[i]) {
                 return false
             }
         }
+        
         return true
     }
 }
@@ -56,6 +59,7 @@ open class APIBase {
     
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
         let response: Observable<JSONDictionary> = request(input)
+        
         return response
             .map { json -> T in
                 if let t = T(JSON: json) {
@@ -67,6 +71,7 @@ open class APIBase {
     
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
         let response: Observable<JSONArray> = request(input)
+        
         return response
             .map { json -> [T] in
                 return Mapper<T>().mapArray(JSONArray: json)
@@ -111,7 +116,11 @@ open class APIBase {
                                  headers: input.headers)
                 }
             }
-            .do(onNext: { (_) in
+            .do(onNext: { (dataRequest) in
+                if self.logOptions.contains(.rawRequest) {
+                    debugPrint(dataRequest)
+                }
+                
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 }
@@ -122,6 +131,7 @@ open class APIBase {
                         .authenticate(user: user, password: password)
                         .rx.responseData()
                 }
+                
                 return dataRequest.rx.responseData()
             }
             .do(onNext: { (_) in
@@ -157,6 +167,7 @@ open class APIBase {
                 if self.logOptions.contains(.error) {
                     print(error)
                 }
+                
                 return Observable.empty()
             }
             .map { $0 as! U }  // swiftlint:disable:this force_cast
@@ -228,6 +239,7 @@ open class APIBase {
         } else if let jsonArray = json as? JSONArray {
             return handleResponseError(response: response, data: data, json: jsonArray)
         }
+        
         return APIUnknownError(statusCode: response.statusCode)
     }
     

@@ -44,9 +44,16 @@ final class EventListViewController: UIViewController, BindableType {
             $0.rowHeight = UITableView.automaticDimension
             $0.register(cellType: EventCell.self)
         }
+        
         tableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
+        
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
     }
 
     func bindViewModel() {

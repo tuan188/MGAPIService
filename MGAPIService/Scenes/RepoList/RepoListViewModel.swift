@@ -35,7 +35,7 @@ extension RepoListViewModel: ViewModelType {
     }
     
     func transform(_ input: Input) -> Output {
-        let result = configPagination(
+        let result = getPage(
             loadTrigger: input.loadTrigger,
             reloadTrigger: input.reloadTrigger,
             loadMoreTrigger: input.loadMoreTrigger,

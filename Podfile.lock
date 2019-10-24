@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.8.2)
-  - MGArchitecture (1.0.0):
+  - MGArchitecture (1.2.0):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
-  - MGLoadMore (0.5.0):
+  - MGLoadMore (1.1.0):
     - MJRefresh (~> 3.1)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
@@ -30,8 +30,8 @@ PODS:
   - Then (2.4.0)
 
 DEPENDENCIES:
-  - MGArchitecture (= 1.0.0)
-  - MGLoadMore (= 0.5.0)
+  - MGArchitecture (= 1.2.0)
+  - MGLoadMore (= 1.1.0)
   - MJRefresh (~> 3.1)
   - "NSObject+Rx (= 5.0)"
   - ObjectMapper (= 3.5)
@@ -40,7 +40,7 @@ DEPENDENCIES:
   - Then (= 2.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - MGArchitecture
     - MGLoadMore
@@ -56,8 +56,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  MGArchitecture: 20b10c747263faf8d0ee9e75290047ce7146e395
-  MGLoadMore: da76f2e69ed88e5a12cdde0de729bcaeb17067af
+  MGArchitecture: fd31de59df23dc4c15b3a3974ebe3aeb358b043d
+  MGLoadMore: 30aa46e8c04ba5fdb5e2be74aabbf5083b145592
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   "NSObject+Rx": 6151a97d171f7187c4183746acc42d9451952a7b
   ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
@@ -68,6 +68,6 @@ SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
 
-PODFILE CHECKSUM: 35408afac99fb3ca1cc3250eabd7c1db5c497ec4
+PODFILE CHECKSUM: 2ae1d5015aa0da9ef90a40cc176988b8face0571
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4
