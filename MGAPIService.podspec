@@ -8,7 +8,7 @@ s.summary = "Network layer, built on top of RxAlamofire"
 s.requires_arc = true
 
 # 2
-s.version = "1.1.0"
+s.version = "1.1.1"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
