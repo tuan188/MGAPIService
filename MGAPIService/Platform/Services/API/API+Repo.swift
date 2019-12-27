@@ -15,7 +15,13 @@ extension API {
     }
     
     func getEventList(_ input: GetEventListInput) -> Observable<[Event]> {
-        return request(input)
+        let output: Observable<APIResponse<[Event]>> = request(input)
+        
+        return output
+            .do(onNext: { response in
+                print(response.header)
+            })
+            .map { $0.data }
     }
 }
 

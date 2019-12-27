@@ -20,16 +20,28 @@ final class RepoRepository: RepoRepositoryType {
         input.useCache = true
         
         return API.shared.getRepoList(input)
-            .map { output in
-                guard let repos = output.repos else {
-                    throw APIInvalidResponseError()
-                }
+            .do(onNext: { _ in
+                print("getRepoList")
+            })
+            .map { $0.repos }
+            .unwrap()
+            .distinctUntilChanged { $0 == $1 }
+            .map { repos in
                 return PagingInfo<Repo>(page: page, items: repos)
             }
+            .do(onNext: { _ in
+                print("getRepoList done")
+            })
     }
     
     func getEventList(owner: String, repo: String) -> Observable<[Event]> {
         let input = API.GetEventListInput(owner: owner, repo: repo, perPage: 10)
+        input.useCache = true
+        
         return API.shared.getEventList(input)
+            .distinctUntilChanged { $0 == $1 }
+            .do(onNext: { _ in
+                print("getEventList")
+            })
     }
 }

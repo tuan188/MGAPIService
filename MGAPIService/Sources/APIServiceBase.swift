@@ -13,6 +13,7 @@ import RxAlamofire
 
 public typealias JSONDictionary = [String: Any]
 public typealias JSONArray = [JSONDictionary]
+public typealias ResponseHeader = [AnyHashable: Any]
 
 public protocol JSONData {
     init()
@@ -57,30 +58,41 @@ open class APIBase {
         manager = Alamofire.SessionManager(configuration: configuration)
     }
     
-    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
-        let response: Observable<JSONDictionary> = request(input)
+    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<APIResponse<T>> {
+        let response: Observable<APIResponse<JSONDictionary>> = requestJSON(input)
         
         return response
-            .map { json -> T in
-                if let t = T(JSON: json) {
-                    return t
+            .map { apiResponse -> APIResponse<T> in
+                if let t = T(JSON: apiResponse.data) {
+                    return APIResponse(header: apiResponse.header, data: t)
                 }
+                
                 throw APIInvalidResponseError()
             }
     }
     
-    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
-        let response: Observable<JSONArray> = request(input)
+    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<T> {
+        return request(input).map { $0.data }
+    }
+    
+    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<APIResponse<[T]>> {
+        let response: Observable<APIResponse<JSONArray>> = requestJSON(input)
         
         return response
-            .map { json -> [T] in
-                return Mapper<T>().mapArray(JSONArray: json)
+            .map { apiResponse -> APIResponse<[T]> in
+                return APIResponse(header: apiResponse.header,
+                                   data: Mapper<T>().mapArray(JSONArray: apiResponse.data))
             }
     }
     
-    open func request<U: JSONData>(_ input: APIInputBase) -> Observable<U> {
+    open func request<T: Mappable>(_ input: APIInputBase) -> Observable<[T]> {
+        return request(input).map { $0.data }
+    }
+    
+    open func requestJSON<U: JSONData>(_ input: APIInputBase) -> Observable<APIResponse<U>> {
         let user = input.user
         let password = input.password
+        
         let urlRequest = preprocess(input)
             .do(onNext: { [unowned self] input in
                 if self.logOptions.contains(.request) {
@@ -143,16 +155,18 @@ open class APIBase {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })
-            .map { (dataResponse) -> U in
+            .map { (dataResponse) -> APIResponse<U> in
                 return try self.process(dataResponse)
             }
-            .catchError { [unowned self] error -> Observable<U> in
+            .catchError { [unowned self] error -> Observable<APIResponse<U>> in
                 return try self.handleRequestError(error, input: input)
             }
-            .do(onNext: { (json) in
+            .do(onNext: { response in
                 if input.useCache {
                     DispatchQueue.global().async {
-                        try? CacheManager.sharedInstance.write(urlString: input.urlEncodingString, data: json)
+                        try? CacheManager.sharedInstance.write(urlString: input.urlEncodingString,
+                                                               data: response.data,
+                                                               header: response.header)
                     }
                 }
             })
@@ -160,8 +174,8 @@ open class APIBase {
         let cacheRequest = Observable.just(input)
             .filter { $0.useCache }
             .subscribeOn(ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global()))
-            .map {
-                try CacheManager.sharedInstance.read(urlString: $0.urlEncodingString)
+            .map { input -> (Any, ResponseHeader?) in
+                return try CacheManager.sharedInstance.read(urlString: input.urlEncodingString)
             }
             .catchError { [unowned self] error in
                 if self.logOptions.contains(.error) {
@@ -170,16 +184,19 @@ open class APIBase {
                 
                 return Observable.empty()
             }
-            .map { $0 as! U }  // swiftlint:disable:this force_cast
-            .do(onNext: { [unowned self] data in
+            .filter { $0.0 is U }
+            .map { data, header -> APIResponse<U> in
+                APIResponse(header: header, data: data as! U) // swiftlint:disable:this force_cast
+            }
+            .do(onNext: { [unowned self] response in
                 if self.logOptions.contains(.cache) {
                     print("[CACHE]")
-                    print(data)
+                    print(response.data)
                 }
             })
         
         return input.useCache
-            ? Observable.concat(cacheRequest, urlRequest).distinctUntilChanged(U.equal)
+            ? Observable.concat(cacheRequest, urlRequest)
             : urlRequest
     }
     
@@ -187,7 +204,7 @@ open class APIBase {
         return Observable.just(input)
     }
     
-    open func process<U: JSONData>(_ response: (HTTPURLResponse, Data)) throws -> U {
+    open func process<U: JSONData>(_ response: (HTTPURLResponse, Data)) throws -> APIResponse<U> {
         let (urlResponse, data) = response
         let json: U? = (try? JSONSerialization.jsonObject(with: data, options: [])) as? U
         
@@ -209,7 +226,8 @@ open class APIBase {
                 print(json ?? data)
             }
             
-            return json ?? U.init()  // swiftlint:disable:this explicit_init
+            // swiftlint:disable:next explicit_init
+            return APIResponse(header: urlResponse.allHeaderFields, data: json ?? U.init())
         default:
             error = handleResponseError(response: urlResponse, data: data, json: json)
             
@@ -229,7 +247,8 @@ open class APIBase {
         throw error
     }
     
-    open func handleRequestError<U: JSONData>(_ error: Error, input: APIInputBase) throws -> Observable<U> {
+    open func handleRequestError<U: JSONData>(_ error: Error,
+                                              input: APIInputBase) throws -> Observable<APIResponse<U>> {
         throw error
     }
     

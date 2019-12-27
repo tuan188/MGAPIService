@@ -15,6 +15,10 @@ struct Event {
     var type: String
 }
 
+extension Event: Equatable {
+    
+}
+
 extension Event {
     init() {
         self.init(

@@ -20,6 +20,10 @@ struct Repo {
     var owner: String
 }
 
+extension Repo: Equatable {
+
+}
+
 extension Repo {
     init() {
         self.init(

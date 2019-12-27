@@ -49,6 +49,7 @@
 		174015DA22575A9E00838B91 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174015D822575A9E00838B91 /* RepoCell.swift */; };
 		174015DB22575A9E00838B91 /* RepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174015D922575A9E00838B91 /* RepoCell.xib */; };
 		174015DD22575B5700838B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174015DC22575B5700838B91 /* Main.storyboard */; };
+		176258EE23B5E9A600750643 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176258ED23B5E9A600750643 /* APIResponse.swift */; };
 		17C67BE5228D3BAB002C1127 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C67BE4228D3BAB002C1127 /* AppDelegate.swift */; };
 		17C98945230A374B00A2DB59 /* LogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C98944230A374B00A2DB59 /* LogOptions.swift */; };
 		17DF0CFF225AD76D00376293 /* RepoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF0CFE225AD76D00376293 /* RepoRepository.swift */; };
@@ -97,6 +98,7 @@
 		174015D822575A9E00838B91 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		174015D922575A9E00838B91 /* RepoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoCell.xib; sourceTree = "<group>"; };
 		174015DC22575B5700838B91 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		176258ED23B5E9A600750643 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		179F9E6E217859A10018A62B /* APIOutputBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIOutputBase.swift; sourceTree = "<group>"; };
 		179F9E6F217859A10018A62B /* APIErrorBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorBase.swift; sourceTree = "<group>"; };
 		179F9E70217859A10018A62B /* APIInputBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIInputBase.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				179F9E74217859A10018A62B /* RxAlamofire+Multipart.swift */,
 				179F9E75217859A10018A62B /* String+Base64.swift */,
 				17C98944230A374B00A2DB59 /* LogOptions.swift */,
+				176258ED23B5E9A600750643 /* APIResponse.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				174015D02257598F00838B91 /* RepoListUseCase.swift in Sources */,
 				174015C3225738D300838B91 /* APIServiceBase.swift in Sources */,
 				174015B5225738C800838B91 /* APIUrls.swift in Sources */,
+				176258EE23B5E9A600750643 /* APIResponse.swift in Sources */,
 				174015BC225738C800838B91 /* Assembler.swift in Sources */,
 				174015B4225738C800838B91 /* APIOutput.swift in Sources */,
 				174015C4225738D300838B91 /* CacheManager.swift in Sources */,
@@ -538,14 +542,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				INFOPLIST_FILE = MGAPIService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sun-asterisk.MGAPIService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MGAPIService/MGAPIService-Bridging-Header.h";
@@ -562,14 +566,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				INFOPLIST_FILE = MGAPIService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sun-asterisk.MGAPIService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MGAPIService/MGAPIService-Bridging-Header.h";
