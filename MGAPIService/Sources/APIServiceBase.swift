@@ -50,11 +50,15 @@ open class APIBase {
     public var manager: Alamofire.SessionManager
     public var logOptions = LogOptions.default
     
-    public init() {
+    public convenience init() {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 60
         configuration.timeoutIntervalForResource = 60
         
+        self.init(configuration: configuration)
+    }
+    
+    public init(configuration: URLSessionConfiguration) {
         manager = Alamofire.SessionManager(configuration: configuration)
     }
     
@@ -259,7 +263,7 @@ open class APIBase {
             return handleResponseError(response: response, data: data, json: jsonArray)
         }
         
-        return APIUnknownError(statusCode: response.statusCode)
+        return handleResponseUnknownError(response: response, data: data)
     }
     
     open func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONDictionary?) -> Error {
@@ -267,6 +271,10 @@ open class APIBase {
     }
     
     open func handleResponseError(response: HTTPURLResponse, data: Data, json: JSONArray?) -> Error {
+        return APIUnknownError(statusCode: response.statusCode)
+    }
+    
+    open func handleResponseUnknownError(response: HTTPURLResponse, data: Data) -> Error {
         return APIUnknownError(statusCode: response.statusCode)
     }
 }

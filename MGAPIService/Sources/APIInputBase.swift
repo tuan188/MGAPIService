@@ -16,6 +16,7 @@ open class APIInputBase {
     public var parameters: [String: Any]?
     public var requireAccessToken: Bool
     public var accessToken: String?
+    
     public var useCache: Bool = false {
         didSet {
             if requestType != .get || self is APIUploadInputBase {
@@ -23,6 +24,7 @@ open class APIInputBase {
             }
         }
     }
+    
     public var user: String?
     public var password: String?
     
@@ -48,9 +50,20 @@ extension APIInputBase {
             else {
                 return urlString
         }
-        urlComponents.queryItems = parameters.map {
-            return URLQueryItem(name: "\($0)", value: "\($1)")
+        
+        urlComponents.queryItems = []
+        
+        for name in parameters.keys.sorted() {
+            if let value = parameters[name] {
+                let item = URLQueryItem(
+                    name: "\(name)",
+                    value: "\(value)"
+                )
+                
+                urlComponents.queryItems?.append(item)
+            }
         }
+        
         return urlComponents.url?.absoluteString ?? urlString
     }
     
@@ -58,6 +71,7 @@ extension APIInputBase {
         if requestType == .get || !isIncludedParameters {
             return "🌎 \(requestType.rawValue) \(urlEncodingString)"
         }
+        
         return [
             "🌎 \(requestType.rawValue) \(urlString)",
             "Parameters: \(String(describing: parameters ?? JSONDictionary()))"
