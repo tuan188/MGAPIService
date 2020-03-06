@@ -2,13 +2,13 @@ Pod::Spec.new do |s|
 
 # 1
 s.platform = :ios
-s.ios.deployment_target = '9.0'
+s.ios.deployment_target = '10.0'
 s.name = "MGAPIService"
 s.summary = "Network layer, built on top of RxAlamofire"
 s.requires_arc = true
 
 # 2
-s.version = "2.1.0"
+s.version = "2.2.0"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
@@ -25,8 +25,8 @@ s.source = { :git => "https://github.com/tuan188/MGAPIService.git",
 
 # 7
 s.framework = "UIKit"
-s.dependency 'RxSwift', '~> 5.0'
-s.dependency 'RxAlamofire', '~> 5.0'
+s.dependency 'RxSwift', '~> 5.1'
+s.dependency 'RxAlamofire', '~> 5.1'
 s.dependency 'ObjectMapper', '~> 3.5'
 
 # 8
