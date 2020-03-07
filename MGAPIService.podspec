@@ -2,13 +2,13 @@ Pod::Spec.new do |s|
 
 # 1
 s.platform = :ios
-s.ios.deployment_target = '10.0'
+s.ios.deployment_target = '9.0'
 s.name = "MGAPIService"
 s.summary = "Network layer, built on top of RxAlamofire"
 s.requires_arc = true
 
 # 2
-s.version = "2.2.0"
+s.version = "2.2.1"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
