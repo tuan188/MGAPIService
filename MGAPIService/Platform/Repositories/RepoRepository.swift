@@ -17,7 +17,7 @@ protocol RepoRepositoryType {
 final class RepoRepository: RepoRepositoryType {
     func getRepoList(page: Int, perPage: Int, useCache: Bool) -> Observable<PagingInfo<Repo>> {
         let input = API.GetRepoListInput(page: page, perPage: perPage)
-        input.useCache = true
+        input.usingCache = true
         
         return API.shared.getRepoList(input)
             .do(onNext: { _ in
@@ -36,7 +36,7 @@ final class RepoRepository: RepoRepositoryType {
     
     func getEventList(owner: String, repo: String) -> Observable<[Event]> {
         let input = API.GetEventListInput(owner: owner, repo: repo, perPage: 10)
-        input.useCache = true
+        input.usingCache = true
         
         return API.shared.getEventList(input)
             .distinctUntilChanged { $0 == $1 }

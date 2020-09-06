@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 def pods
     inhibit_all_warnings!
@@ -6,9 +6,9 @@ def pods
     pod 'MGArchitecture', '1.3.1'
     pod 'MGLoadMore', '1.3.1'
 
-    pod 'RxAlamofire', '5.1'
+    pod 'RxAlamofire', '5.6'
     pod 'NSObject+Rx', '5.0'
-    pod 'ObjectMapper', '3.5'
+    pod 'ObjectMapper', '4.2'
     
     pod 'MJRefresh', '~> 3.1', :modular_headers => true
     pod 'Then', '2.4'

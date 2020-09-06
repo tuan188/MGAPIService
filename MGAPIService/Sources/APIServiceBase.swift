@@ -6,6 +6,7 @@
 //  Copyright © 2019 Sun Asterisk. All rights reserved.
 //
 
+import Foundation
 import ObjectMapper
 import Alamofire
 import RxSwift
@@ -47,7 +48,7 @@ extension JSONArray: JSONData {
 
 open class APIBase {
    
-    public var manager: Alamofire.SessionManager
+    public var manager: Alamofire.Session
     public var logOptions = LogOptions.default
     
     public convenience init() {
@@ -59,7 +60,7 @@ open class APIBase {
     }
     
     public init(configuration: URLSessionConfiguration) {
-        manager = Alamofire.SessionManager(configuration: configuration)
+        manager = Alamofire.Session(configuration: configuration)
     }
     
     open func request<T: Mappable>(_ input: APIInputBase) -> Observable<APIResponse<T>> {
@@ -103,62 +104,51 @@ open class APIBase {
                     print(input.description(isIncludedParameters: self.logOptions.contains(.requestParameters)))
                 }
             })
-            .flatMapLatest { [unowned self] input -> Observable<DataRequest> in
+            .map { [unowned self] input -> DataRequest in
                 if let uploadInput = input as? APIUploadInputBase {
-                    return self.manager.rx
-                        .upload(to: uploadInput.urlString,
-                                method: uploadInput.requestType,
-                                headers: uploadInput.headers) { (multipartFormData) in
-                                    input.parameters?.forEach { key, value in
-                                        if let data = String(describing: value).data(using: .utf8) {
-                                            multipartFormData.append(data, withName: key)
-                                        }
-                                    }
-                                    uploadInput.data.forEach({
-                                        multipartFormData.append(
-                                            $0.data,
-                                            withName: $0.name,
-                                            fileName: $0.fileName,
-                                            mimeType: $0.mimeType)
-                                    })
-                        }
-                        .map { $0 as DataRequest }
+                    return self.manager.upload(
+                        multipartFormData: { (multipartFormData) in
+                            input.parameters?.forEach { key, value in
+                                if let data = String(describing: value).data(using: .utf8) {
+                                    multipartFormData.append(data, withName: key)
+                                }
+                            }
+                            uploadInput.data.forEach({
+                                multipartFormData.append(
+                                    $0.data,
+                                    withName: $0.name,
+                                    fileName: $0.fileName,
+                                    mimeType: $0.mimeType)
+                            })
+                        },
+                        to: uploadInput.urlString,
+                        method: uploadInput.method,
+                        headers: uploadInput.headers
+                    )
                 } else {
-                    return self.manager.rx
-                        .request(input.requestType,
-                                 input.urlString,
-                                 parameters: input.parameters,
-                                 encoding: input.encoding,
-                                 headers: input.headers)
+                    return self.manager.request(
+                        input.urlString,
+                        method: input.method,
+                        parameters: input.parameters,
+                        encoding: input.encoding,
+                        headers: input.headers
+                    )
                 }
             }
             .do(onNext: { (dataRequest) in
                 if self.logOptions.contains(.rawRequest) {
                     debugPrint(dataRequest)
                 }
-                
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                }
             })
             .flatMapLatest { dataRequest -> Observable<(HTTPURLResponse, Data)> in
                 if let user = user, let password = password {
                     return dataRequest
-                        .authenticate(user: user, password: password)
+                        .authenticate(username: user, password: password)
                         .rx.responseData()
                 }
                 
                 return dataRequest.rx.responseData()
             }
-            .do(onNext: { (_) in
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            }, onError: { (_) in
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })
             .map { (dataResponse) -> APIResponse<U> in
                 return try self.process(dataResponse)
             }
@@ -166,7 +156,7 @@ open class APIBase {
                 return try self.handleRequestError(error, input: input)
             }
             .do(onNext: { response in
-                if input.useCache {
+                if input.usingCache {
                     DispatchQueue.global().async {
                         try? CacheManager.sharedInstance.write(urlString: input.urlEncodingString,
                                                                data: response.data,
@@ -176,7 +166,7 @@ open class APIBase {
             })
         
         let cacheRequest = Observable.just(input)
-            .filter { $0.useCache }
+            .filter { $0.usingCache }
             .subscribeOn(ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global()))
             .map { input -> (Any, ResponseHeader?) in
                 return try CacheManager.sharedInstance.read(urlString: input.urlEncodingString)
@@ -199,7 +189,7 @@ open class APIBase {
                 }
             })
         
-        return input.useCache
+        return input.usingCache
             ? Observable.concat(cacheRequest, urlRequest)
             : urlRequest
     }

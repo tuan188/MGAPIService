@@ -18,9 +18,9 @@ extension API {
         let output: Observable<APIResponse<[Event]>> = request(input)
         
         return output
-            .do(onNext: { response in
-                print(response.header)
-            })
+//            .do(onNext: { response in
+//                print(response.header)
+//            })
             .map { $0.data }
     }
 }
@@ -36,7 +36,7 @@ extension API {
             ]
             super.init(urlString: API.Urls.getRepoList,
                        parameters: params,
-                       requestType: .get,
+                       method: .get,
                        requireAccessToken: true)
         }
     }
@@ -61,7 +61,7 @@ extension API {
             let urlString = String(format: API.Urls.getEventList, owner, repo)
             super.init(urlString: urlString,
                        parameters: params,
-                       requestType: .get,
+                       method: .get,
                        requireAccessToken: true)
         }
     }

@@ -7,19 +7,20 @@
 //
 
 import Alamofire
+import Foundation
 
 open class APIInputBase {
-    public var headers: [String: String] = [:]
+    public var headers: HTTPHeaders?
     public var urlString: String
-    public var requestType: HTTPMethod
+    public var method: HTTPMethod
     public var encoding: ParameterEncoding
-    public var parameters: [String: Any]?
+    public var parameters: Parameters?
     public var requireAccessToken: Bool
     public var accessToken: String?
     
-    public var useCache: Bool = false {
+    public var usingCache: Bool = false {
         didSet {
-            if requestType != .get || self is APIUploadInputBase {
+            if method != .get || self is APIUploadInputBase {
                 fatalError()  // swiftlint:disable:this fatal_error_message
             }
         }
@@ -30,12 +31,12 @@ open class APIInputBase {
     
     public init(urlString: String,
                 parameters: [String: Any]?,
-                requestType: HTTPMethod,
+                method: HTTPMethod,
                 requireAccessToken: Bool) {
         self.urlString = urlString
         self.parameters = parameters
-        self.requestType = requestType
-        self.encoding = requestType == .get ? URLEncoding.default : JSONEncoding.default
+        self.method = method
+        self.encoding = method == .get ? URLEncoding.default : JSONEncoding.default
         self.requireAccessToken = requireAccessToken
     }
 }
@@ -46,7 +47,7 @@ extension APIInputBase {
             let url = URL(string: urlString),
             var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
             let parameters = parameters,
-            requestType == .get
+            method == .get
             else {
                 return urlString
         }
@@ -68,12 +69,12 @@ extension APIInputBase {
     }
     
     open func description(isIncludedParameters: Bool) -> String {
-        if requestType == .get || !isIncludedParameters {
-            return "🌎 \(requestType.rawValue) \(urlEncodingString)"
+        if method == .get || !isIncludedParameters {
+            return "🌎 \(method.rawValue) \(urlEncodingString)"
         }
         
         return [
-            "🌎 \(requestType.rawValue) \(urlString)",
+            "🌎 \(method.rawValue) \(urlString)",
             "Parameters: \(String(describing: parameters ?? JSONDictionary()))"
         ].joined(separator: "\n")
     }
@@ -99,7 +100,7 @@ open class APIUploadInputBase: APIInputBase {
     public init(data: [APIUploadData],
                 urlString: String,
                 parameters: [String: Any]?,
-                requestType: HTTPMethod,
+                method: HTTPMethod,
                 requireAccessToken: Bool) {
         
         self.data = data
@@ -107,7 +108,7 @@ open class APIUploadInputBase: APIInputBase {
         super.init(
             urlString: urlString,
             parameters: parameters,
-            requestType: requestType,
+            method: method,
             requireAccessToken: requireAccessToken
         )
     }
